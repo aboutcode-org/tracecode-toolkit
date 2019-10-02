@@ -1,0 +1,37 @@
+#!/bin/bash
+#
+# Copyright (c) nexB Inc. http://www.nexb.com/ - All rights reserved.
+#
+
+set -e
+
+################################
+# change these variables to customize this script locally
+################################
+# you can define one or more thirdparty dirs, each prefixed with TPP_DIR
+export TPP_DIR="thirdparty"
+
+# default configurations for dev
+CONF_DEFAULT="etc/conf/dev"
+#################################
+
+CFG_CMD_LINE_ARGS="$@"
+
+if [[ "$1" == "" ]]; then
+    # default for dev conf if not argument is provided
+    CFG_CMD_LINE_ARGS=$CONF_DEFAULT
+fi
+
+CONFIGURE_ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if [[ "$PYTHON_EXE" == "" ]]; then
+    PYTHON_EXE=python
+fi
+
+$PYTHON_EXE "$CONFIGURE_ROOT_DIR/etc/configure.py" $CFG_CMD_LINE_ARGS
+
+if [ -f "$CONFIGURE_ROOT_DIR/bin/activate" ]; then
+    source "$CONFIGURE_ROOT_DIR/bin/activate"
+fi
+
+set +e

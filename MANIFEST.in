@@ -1,0 +1,27 @@
+graft src
+graft etc
+graft thirdparty
+graft samples
+
+recursive-exclude thirdparty/dev *
+prune tests
+
+
+include tracecode.ABOUT
+include AUTHORS.rst
+include CHANGELOG.rst
+include CONTRIBUTING.rst
+include README.rst
+include apache-2.0.LICENSE
+include NOTICE
+include MANIFEST.in
+include setup.py
+include setup.cfg
+include .gitignore
+include configure
+include configure.bat
+include tracecode
+include tracecode.bat
+include .travis.yml
+
+global-exclude *.py[co] __pycache__ *.*~
