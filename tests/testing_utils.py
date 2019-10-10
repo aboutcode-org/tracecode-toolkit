@@ -143,8 +143,6 @@ def load_json_result_from_string(string, remove_file_date=False):
     # clean new headers attributes
     streamline_headers(scan_results)
 
-    scan_results['deltas'].sort(key=lambda  x: x['factors'], reverse=False)
-    scan_results['deltas'].sort(key=lambda x: x['score'], reverse=True)
     return scan_results
 
 

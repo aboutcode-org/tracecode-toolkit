@@ -22,34 +22,5 @@
 #  TraceCode is a free and open source software analysis tool from nexB Inc. and others.
 #  Visit https://github.com/nexB/tracecode-toolkit/ for support and download.
 #
-
 from __future__ import absolute_import
-
-
-from pkg_resources import get_distribution, DistributionNotFound
-try:
-    __version__ = get_distribution('tracecode-toolkit').version
-except DistributionNotFound:
-    # package is not installed ??
-    __version__ = '1.0.0'
-
-
-class TraceCode(object):
-    """
-    Handle the basic operations on a pair of incoming ScanCode scans (in JSON
-    format) and return the same paths from a comparison of the paths in both input
-    jsons.
-    """
-    def __init__(self, deploy, develop, options):
-        self.deploy = deploy
-        self.develop = develop
-        self.options = options
-        self.errors = []
-        self.results = []
-        self._parse()
-        
-    def _parse(self):
-        """
-        Parse the deploy and develop json and return a set of same paths.
-        """
-        pass
+from __future__ import division

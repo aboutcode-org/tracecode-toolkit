@@ -34,11 +34,24 @@ from click.testing import CliRunner
 import unicodecsv
 
 from commoncode.testcase import FileBasedTesting
+from testing_utils import check_json_scan
+from testing_utils import run_scan_click
 
+from tracecode import cli
 
 class TestCLI(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
-    def test_cli(self):
-        pass
+    def test_cli_with_empty_json(self):
+        deploy_json = self.get_test_loc('cli/empty_deploy.json')
+        develop_json = self.get_test_loc('cli/empty_develop.json')
+        expected_json = self.get_test_loc('cli/expected_empty.json')
+
+        result_file = self.get_temp_file('json')
+        
+        args = ['--deploy', deploy_json, '--develop', develop_json, '-j', result_file]
+        run_scan_click(args)
+        
+        check_json_scan(expected_json, result_file, regen=True)
+
