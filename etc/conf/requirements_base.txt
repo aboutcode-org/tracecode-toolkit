@@ -6,5 +6,10 @@ pip
 wincertstore
 six
 
+docopt
+
+# Graphing
+altgraph
+
 # Self
 -e .

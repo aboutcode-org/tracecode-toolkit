@@ -55,3 +55,14 @@ class TestCLI(FileBasedTesting):
         
         check_json_scan(expected_json, result_file, regen=True)
 
+    def test_cli_with_regular_json(self):
+        deploy_json = self.get_test_loc('cli/deploy.json')
+        develop_json = self.get_test_loc('cli/develop.json')
+        expected_json = self.get_test_loc('cli/expected_regular.json')
+
+        result_file = self.get_temp_file('json')
+        
+        args = ['--deploy', deploy_json, '--develop', develop_json, '-j', result_file]
+        run_scan_click(args)
+        
+        check_json_scan(expected_json, result_file, regen=True)

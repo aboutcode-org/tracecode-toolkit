@@ -52,4 +52,9 @@ class TraceCode(object):
         """
         Parse the deploy and develop json and return a set of same paths.
         """
-        pass
+        from trancode import tracecode
+        procs = tracecode.parse_raw_traces(cwd, input_dir, None,
+                                           parallel=True,
+                                           settings=settings)
+
+        d2d = tracecode.analyze_full_graph(procs, settings, _invert=None)
