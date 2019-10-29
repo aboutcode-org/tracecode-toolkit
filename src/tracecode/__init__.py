@@ -52,9 +52,10 @@ class TraceCode(object):
         """
         Parse the deploy and develop json and return a set of same paths.
         """
-        from trancode import tracecode
-        procs = tracecode.parse_raw_traces(cwd, input_dir, None,
-                                           parallel=True,
-                                           settings=settings)
-
-        d2d = tracecode.analyze_full_graph(procs, settings, _invert=None)
+        from tracecode import tracecode
+        from tracecode import conf
+        from tracecode import utils
+        stgs = conf.BaseSettings()
+        sources = utils.get_paths_set_from_json(self.deploy)
+        targets = utils.get_paths_set_from_json(self.develop)
+        self.results  = list(tracecode.match_paths(sources,targets))
