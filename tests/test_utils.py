@@ -28,44 +28,18 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import codecs
-from collections import OrderedDict
-import json
 import os
 
-from click.testing import CliRunner
-import unicodecsv
-
 from commoncode.testcase import FileBasedTesting
-from testing_utils import check_json_scan
-from testing_utils import run_scan_click
 
-from tracecode import cli
+from tracecode import utils
 
-class TestCLI(FileBasedTesting):
+
+class TestUtils(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
-    def test_cli_with_empty_json(self):
-        deploy_json = self.get_test_loc('cli/empty_deploy.json')
-        develop_json = self.get_test_loc('cli/empty_develop.json')
-        expected_json = self.get_test_loc('cli/expected_empty.json')
-
-        result_file = self.get_temp_file('json')
-        
-        args = ['--deploy', deploy_json, '--develop', develop_json, '-j', result_file]
-        run_scan_click(args)
-        
-        check_json_scan(expected_json, result_file, regen=False)
-
     def test_cli_with_regular_json(self):
         deploy_json = self.get_test_loc('cli/deploy.json')
-        develop_json = self.get_test_loc('cli/develop.json')
-        expected_json = self.get_test_loc('cli/expected_regular.json')
-
-        result_file = self.get_temp_file('json')
-        
-        args = ['--deploy', deploy_json, '--develop', develop_json, '-j', result_file]
-        run_scan_click(args)
-        
-        check_json_scan(expected_json, result_file, regen=False)
+        result = utils.get_paths_set_from_json(deploy_json)
+        assert len(result) == 76

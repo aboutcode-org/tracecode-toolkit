@@ -47,7 +47,7 @@ def write_json(tracecode, outfile, all_paths=False):
         ('tracecode_options', tracecode.options),
         ('tracecode_version', __version__),
         ('tracecode_errors',tracecode.errors),
-        ('tracecode_resulst',tracecode.results),
+        ('tracecode_results',tracecode.results),
       
     ])
 
