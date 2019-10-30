@@ -70,7 +70,7 @@ def print_version(ctx, param, value):
 @click.option('--version', is_flag=True, is_eager=True, expose_value=False, callback=print_version, help='Show the version and exit.')
 def cli(deploy, develop, json):
     """
-    Command to accept location of deploy and develop json inputs, run the tracecode scan and return the expected same paths set by comparision of paths.
+    Command to accept location of deploy and develop json inputs, run the tracecode scan and return the expected same paths set by comparison of paths.
     """
     options = OrderedDict([
         ('--deploy', deploy),
@@ -78,4 +78,3 @@ def cli(deploy, develop, json):
     ])
     tracecode= TraceCode(deploy, develop, options)
     write_json(tracecode, json)
-
