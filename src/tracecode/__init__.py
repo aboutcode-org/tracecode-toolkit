@@ -33,6 +33,9 @@ except DistributionNotFound:
     # package is not installed ??
     __version__ = '1.0.0'
 
+from tracecode import tracecode
+from tracecode import utils
+
 
 class TraceCode(object):
     """
@@ -52,10 +55,6 @@ class TraceCode(object):
         """
         Parse the deploy and develop json and return a set of same paths.
         """
-        from tracecode import tracecode
-        from tracecode import conf
-        from tracecode import utils
-        stgs = conf.BaseSettings()
-        sources = utils.get_paths_set_from_json(self.deploy)
-        targets = utils.get_paths_set_from_json(self.develop)
-        self.results  = list(tracecode.match_paths(sources,targets))
+        deploy_paths = utils.get_paths_set_from_json(self.deploy)
+        develop_paths = utils.get_paths_set_from_json(self.develop)
+        self.results  = list(tracecode.match_paths(deploy_paths,develop_paths))
