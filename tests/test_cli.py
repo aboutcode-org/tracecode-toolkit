@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
+# Copyright (c) nexB Inc. and others. All rights reserved.
 # http://nexb.com and https://github.com/nexB/tracecode-toolkit/
 # The TraceCode software is licensed under the Apache License version 2.0.
 # Data generated with TraceCode require an acknowledgment.
@@ -28,13 +28,9 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import codecs
-from collections import OrderedDict
-import json
 import os
 
 from click.testing import CliRunner
-import unicodecsv
 
 from commoncode.testcase import FileBasedTesting
 from testing_utils import check_json_scan

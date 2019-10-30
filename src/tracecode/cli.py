@@ -63,14 +63,14 @@ def print_version(ctx, param, value):
 
 
 @click.command()
-@click.option('--deploy',required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Identify the path to the "deployed" codebase scan file')
+@click.option('--deploy',required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Path to the "deployed" codebase scan file')
 @click.option('--develop', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Path to the "development" codebase scan file')
-@click.option('-j', '--json', prompt=False, default='-', type=click.File(mode='wb', lazy=False), help='Path to the .json output file. Use "-" for on screen display.')
+@click.option('-j', '--json', prompt=False, default='-', type=click.File(mode='wb', lazy=False), help='Path of the .json output file. Use "-" for on screen display.')
 @click.help_option('-h', '--help')
 @click.option('--version', is_flag=True, is_eager=True, expose_value=False, callback=print_version, help='Show the version and exit.')
 def cli(deploy, develop, json):
     """
-    Command to accept location of deploy and develop json, run the tracecode scan and return the expected same paths set.
+    Command to accept location of deploy and develop json inputs, run the tracecode scan and return the expected same paths set by comparision of paths.
     """
     options = OrderedDict([
         ('--deploy', deploy),
