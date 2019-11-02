@@ -89,3 +89,13 @@ class TestCLI(FileBasedTesting):
 
         assert 'Usage: cli [OPTIONS]' in result.output
         assert 'Error: Missing option "--deploy".' in result.output
+        
+    def test_cli_not_existing(self):
+        deploy_json = '/not_existing/not_existing.json'
+        develop_json = '/not_existing/not_existing.json'
+        result_file = self.get_temp_file('json')
+        
+        args = ['--deploy', deploy_json, '--develop', develop_json, '-j', result_file]
+        result = run_scan_click(args, expected_rc=2)
+        assert 'Error: Invalid value for "--deploy": Path "/not_existing/not_existing.json" does not exist.' in result.output
+    
