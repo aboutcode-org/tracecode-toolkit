@@ -30,6 +30,9 @@ from collections import OrderedDict
 import click
 import simplejson
 
+from commoncode import filetype
+from commoncode import fileutils
+
 from tracecode import __version__
 from tracecode import TraceCode
 from tracecode.utils import get_notice
@@ -76,5 +79,18 @@ def cli(deploy, develop, json):
         ('--deploy', deploy),
         ('--develop', develop),
     ])
+    
+    if not is_json_paths(deploy):
+        click.echo('Deploy path is not a json file: ' + deploy)
+        return
+    if not is_json_paths(develop):
+        click.echo('Develop path is not a json file:' + develop)
+        return
+   
     tracecode= TraceCode(deploy, develop, options)
     write_json(tracecode, json)
+
+
+def is_json_paths(location):
+    return (filetype.is_file(location) and fileutils.file_name(location).lower().endswith('.json'))
+        

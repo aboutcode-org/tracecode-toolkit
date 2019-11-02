@@ -36,6 +36,7 @@ from commoncode.testcase import FileBasedTesting
 from testing_utils import check_json_scan
 from testing_utils import run_scan_click
 
+
 from tracecode import cli
 
 class TestCLI(FileBasedTesting):
@@ -65,3 +66,26 @@ class TestCLI(FileBasedTesting):
         run_scan_click(args)
         
         check_json_scan(expected_json, result_file, regen=False)
+
+
+
+    def test_help(self):
+        runner = CliRunner()
+        result = runner.invoke(cli.cli, ['--help'])
+
+        assert 'Usage: cli [OPTIONS]' in result.output
+        assert 'Command to accept location of deploy and develop json' in result.output
+        assert '--version' in result.output
+
+    def test_version(self):
+        runner = CliRunner()
+        result = runner.invoke(cli.cli, ['--version'])
+
+        assert 'TraceCode version 1.0.0' in result.output
+
+    def test_empty(self):
+        runner = CliRunner()
+        result = runner.invoke(cli.cli, [])
+
+        assert 'Usage: cli [OPTIONS]' in result.output
+        assert 'Error: Missing option "--deploy".' in result.output
