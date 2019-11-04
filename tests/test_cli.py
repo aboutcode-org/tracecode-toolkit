@@ -99,3 +99,12 @@ class TestCLI(FileBasedTesting):
         result = run_scan_click(args, expected_rc=2)
         assert 'Error: Invalid value for "--deploy": Path "/not_existing/not_existing.json" does not exist.' in result.output
     
+    def test_cli_not_json(self):
+        deploy_json = self.get_test_loc('cli/deploy_notjson')
+        develop_json = self.get_test_loc('cli/develop.json')
+        result_file = self.get_temp_file('json')
+        
+        args = ['--deploy', deploy_json, '--develop', develop_json, '-j', result_file]
+        result = run_scan_click(args)
+        assert 'Deploy path is not a json file:' in result.output
+    
