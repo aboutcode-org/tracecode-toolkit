@@ -63,27 +63,33 @@ def print_version(ctx, param, value):
 
 
 @click.command()
-@click.option('--deploy', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Path to the "deployed" codebase scan file')
-@click.option('--develop', required=True, prompt=False, type=click.Path(exists=True, readable=True), help='Path to the "development" codebase scan file')
-@click.option('-j', '--json', prompt=False, default='-', type=click.File(mode='wb', lazy=False), help='Path of the .json output file. Use "-" for on screen display.')
+@click.option('--deploy', required=True, prompt=False,
+              type=click.Path(exists=True, readable=True),
+              help='Path to the "deployed" codebase scan file')
+@click.option('--develop', required=True, prompt=False,
+              type=click.Path(exists=True, readable=True),
+              help='Path to the "development" codebase scan file')
+@click.option('-j', '--json', prompt=False, default='-',
+              type=click.File(mode='wb', lazy=False),
+              help='Path of the .json output file. Use "-" for on screen display.')
 @click.help_option('-h', '--help')
 @click.option('--version', is_flag=True, is_eager=True, expose_value=False, callback=print_version, help='Show the version and exit.')
-def cli(deploy, develop, json):
+def cli(develop, deploy, json):
     """
     Command to accept location of deploy and develop json inputs, run the
     tracecode scan and return the expected same paths set by comparison of paths.
     """
     options = OrderedDict([
-        ('--deploy', deploy),
         ('--develop', develop),
+        ('--deploy', deploy),
     ])
 
     # FIXME: I am not we care about the paths having a .json extension.
-    if not is_json_paths(deploy):
-        click.echo('Deploy path is not a json file: ' + deploy)
-        return
     if not is_json_paths(develop):
         click.echo('Develop path is not a json file:' + develop)
+        return
+    if not is_json_paths(deploy):
+        click.echo('Deploy path is not a json file: ' + deploy)
         return
 
     analysis = matchers.DeploymentAnalysis(develop=develop, deploy=deploy, options=options)

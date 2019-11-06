@@ -27,6 +27,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 
+from collections import defaultdict
 import logging
 
 from tracecode import pathutils
@@ -40,12 +41,13 @@ class DeploymentAnalysis(object):
     A DeploymentAnalysis holds development and deployment codebases and computes
     how files on each side are related using various matching strategies.
     """
-    def __init__(self, deploy, develop, options):
-        self.deploy = deploy
-        self.deploy_paths = utils.get_paths_set_from_json(self.deploy)
 
+    def __init__(self, develop, deploy,  options):
         self.develop = develop
         self.develop_paths = utils.get_paths_set_from_json(self.develop)
+
+        self.deploy = deploy
+        self.deploy_paths = utils.get_paths_set_from_json(self.deploy)
 
         self.options = options
         self.errors = []
@@ -67,7 +69,6 @@ def match_paths(paths1, paths2):
     paths2 using a common suffix. Yield a sequences of the top match tuples
     (p1, p2,)
     """
-    from collections import defaultdict
     for p1 in paths1:
         cp1 = defaultdict(set)
 
