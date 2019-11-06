@@ -39,7 +39,7 @@ class TestUtils(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
-    def test_cli_with_regular_json(self):
-        deploy_json = self.get_test_loc('cli/deploy.json')
+    def test_get_paths_set_from_json(self):
+        deploy_json = self.get_test_loc('utils/deploy.json')
         result = utils.get_paths_set_from_json(deploy_json)
         assert len(result) == 76
