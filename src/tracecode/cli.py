@@ -28,10 +28,10 @@ from __future__ import absolute_import
 from collections import OrderedDict
 
 import click
-import simplejson
-
+click.disable_unicode_literals_warning = True
 from commoncode import filetype
 from commoncode import fileutils
+import simplejson
 
 from tracecode import __version__
 from tracecode import matchers
