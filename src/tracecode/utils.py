@@ -51,6 +51,7 @@ def get_notice():
 
     return notice
 
+
 def get_paths_set_from_json(location):
     """
     Return the path set from a json input
