@@ -23,25 +23,42 @@
 #  Visit https://github.com/nexB/tracecode-toolkit/ for support and download.
 #
 
-"""
-TraceCode is a tool to analyze the graph of file transformations from a
-traced command, typically a build command.
-"""
 
-from __future__ import print_function, absolute_import
+from __future__ import print_function
+from __future__ import absolute_import
 
 import logging
-import re
 
 from tracecode import pathutils
+from tracecode import utils
 
-# use a large compiled regex cache to avoid having to cache regex compilations
-re._MAXCACHE = 1000000
-
-__version__ = '0.8.0'
+logger = logging.getLogger(__name__)
 
 
-logger = logging.getLogger('tracecode')
+class DeploymentAnalysis(object):
+    """
+    A DeploymentAnalysis holds development and deployment codebases and computes
+    how files on each side are related using various matching strategies.
+    """
+    def __init__(self, deploy, develop, options):
+        self.deploy = deploy
+        self.deploy_paths = utils.get_paths_set_from_json(self.deploy)
+
+        self.develop = develop
+        self.develop_paths = utils.get_paths_set_from_json(self.develop)
+
+        self.options = options
+        self.errors = []
+        self.results = []
+
+        self.compute()
+
+    def compute(self):
+        """
+        Compute (or re-compute) the analysis, return and store results.
+        """
+        self.results = list(match_paths(self.deploy_paths, self.develop_paths))
+        return self.results
 
 
 def match_paths(paths1, paths2):

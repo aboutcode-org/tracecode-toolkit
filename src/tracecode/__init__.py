@@ -33,28 +33,6 @@ except DistributionNotFound:
     # package is not installed ??
     __version__ = '1.0.0'
 
-from tracecode import tracecode
+from tracecode import matchers
 from tracecode import utils
 
-
-class TraceCode(object):
-    """
-    Handle the basic operations on a pair of incoming ScanCode scans (in JSON
-    format) and return the same paths from a comparison of the paths in both input
-    jsons.
-    """
-    def __init__(self, deploy, develop, options):
-        self.deploy = deploy
-        self.develop = develop
-        self.options = options
-        self.errors = []
-        self.results = []
-        self._parse()
-        
-    def _parse(self):
-        """
-        Parse the deploy and develop json and return a set of same paths.
-        """
-        deploy_paths = utils.get_paths_set_from_json(self.deploy)
-        develop_paths = utils.get_paths_set_from_json(self.develop)
-        self.results  = list(tracecode.match_paths(deploy_paths,develop_paths))
