@@ -56,16 +56,16 @@ class TestCLI(FileBasedTesting):
         check_json_scan(expected_json, result_file, regen=False)
 
     def test_cli_with_regular_json(self):
-        develop_json = self.get_test_loc('cli/basic/develop.json')
-        deploy_json = self.get_test_loc('cli/basic/deploy.json')
-        expected_json = self.get_test_loc('cli/basic/expected.json')
+        develop_json = self.get_test_loc('cli/codebase/develop.json')
+        deploy_json = self.get_test_loc('cli/codebase/deploy.json')
+        expected_json = self.get_test_loc('cli/codebase/expected.json')
 
         result_file = self.get_temp_file('json')
 
         args = ['--develop', develop_json, '--deploy',deploy_json, '-j', result_file]
         run_scan_click(args)
 
-        check_json_scan(expected_json, result_file, regen=False)
+        check_json_scan(expected_json, result_file, regen=True)
 
     def test_help(self):
         runner = CliRunner()

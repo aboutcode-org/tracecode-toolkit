@@ -29,6 +29,7 @@ from __future__ import absolute_import
 
 from collections import defaultdict
 import logging
+from scancode.resource import VirtualCodebase
 
 from tracecode import pathutils
 from tracecode import utils
@@ -44,21 +45,30 @@ class DeploymentAnalysis(object):
 
     def __init__(self, develop, deploy,  options):
         self.develop = develop
-        self.develop_paths = utils.get_paths_set_from_json(self.develop)
+        self.develop_paths = []
+        #self.develop_paths = utils.get_paths_set_from_json(self.develop)
+        self.develop_codebase = VirtualCodebase(self.develop)
 
         self.deploy = deploy
-        self.deploy_paths = utils.get_paths_set_from_json(self.deploy)
+        self.deploy_paths = []
+        #self.deploy_paths = utils.get_paths_set_from_json(self.deploy)
+        self.deploy_codebase = VirtualCodebase(self.deploy)
 
         self.options = options
         self.errors = []
         self.results = []
 
         self.compute()
-
+        
     def compute(self):
         """
         Compute (or re-compute) the analysis, return and store results.
         """
+        for resource in self.deploy_codebase.walk():
+            self.deploy_paths.append(resource.path)
+        for resource in self.develop_codebase.walk():
+            self.develop_paths.append(resource.path)
+
         self.results = list(match_paths(self.deploy_paths, self.develop_paths))
         return self.results
 
