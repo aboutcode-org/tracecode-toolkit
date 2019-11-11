@@ -30,7 +30,6 @@ from __future__ import absolute_import
 
 from collections import defaultdict
 from collections import OrderedDict
-import copy
 import sys
 
 import attr
@@ -113,6 +112,12 @@ class DeploymentAnalysis(object):
         #self.deploy_paths = utils.get_paths_set_from_json(self.deploy)
         self.deploy_codebase = VirtualCodebase(self.deploy)
 
+        for resource in self.deploy_codebase.walk():
+            self.deploy_paths.append(resource.path)
+
+        for resource in self.develop_codebase.walk():
+            self.develop_paths.append(resource.path)
+
         self.options = options
         self.errors = []
         self.analysed_result = []
@@ -123,11 +128,6 @@ class DeploymentAnalysis(object):
         """
         Compute (or re-compute) the analysis, return and store results.
         """
-        for resource in self.deploy_codebase.walk():
-            self.deploy_paths.append(resource.path)
-        for resource in self.develop_codebase.walk():
-            self.develop_paths.append(resource.path)
-        
         for resource in self.develop_codebase.walk():
             path  = resource.path
             trace_resource = TracecodeResource(resource)
