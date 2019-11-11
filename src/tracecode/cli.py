@@ -85,10 +85,10 @@ def cli(develop, deploy, json):
     ])
 
     # FIXME: I am not we care about the paths having a .json extension.
-    if not is_json_paths(develop):
+    if not is_json_path(develop):
         click.echo('Develop path is not a json file:' + develop)
         return
-    if not is_json_paths(deploy):
+    if not is_json_path(deploy):
         click.echo('Deploy path is not a json file: ' + deploy)
         return
 
@@ -96,5 +96,13 @@ def cli(develop, deploy, json):
     write_json(analysis=analysis, outfile=json)
 
 
-def is_json_paths(location):
-    return (filetype.is_file(location) and fileutils.file_name(location).lower().endswith('.json'))
+def is_json_path(location):
+    if filetype.is_file(location):
+        try:
+            with open(location) as jsonfile:
+                result = simplejson.load(jsonfile)
+                if result:
+                    return True
+        except:
+            return False
+    return False

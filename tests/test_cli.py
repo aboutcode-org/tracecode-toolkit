@@ -46,14 +46,11 @@ class TestCLI(FileBasedTesting):
     def test_cli_with_empty_json(self):
         develop_json = self.get_test_loc('cli/empty/develop.json')
         deploy_json = self.get_test_loc('cli/empty/deploy.json')
-        expected_json = self.get_test_loc('cli/empty/expected.json')
-
         result_file = self.get_temp_file('json')
-
         args = ['--develop', develop_json, '--deploy',deploy_json, '-j', result_file]
-        run_scan_click(args)
-
-        check_json_scan(expected_json, result_file, regen=False)
+        result = run_scan_click(args)
+        expected = 'Develop path is not a json file:'
+        assert expected in result.output
 
     def test_cli_with_regular_json(self):
         develop_json = self.get_test_loc('cli/codebase/develop.json')
@@ -103,6 +100,17 @@ class TestCLI(FileBasedTesting):
         deploy_json = self.get_test_loc('cli/invalid/deploy_notjson')
         result_file = self.get_temp_file('json')
 
-        args = ['--develop', develop_json, '--deploy',deploy_json, '-j', result_file]
+        args = ['--develop', develop_json, '--deploy',
+                deploy_json, '-j', result_file]
         result = run_scan_click(args)
         assert 'Deploy path is not a json file:' in result.output
+
+    def test_is_json_path_with_invalid_json_file(self):
+        develop_json = self.get_test_loc('cli/invalid/deploy_notjson')
+        is_json_file = cli.is_json_path(develop_json)
+        assert is_json_file == False
+    
+    def test_is_json_path_with_empty_json_file(self):
+        develop_json = self.get_test_loc('cli/empty/deploy.json')
+        is_json_file = cli.is_json_path(develop_json)
+        assert is_json_file == False
