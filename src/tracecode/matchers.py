@@ -146,15 +146,15 @@ class DeploymentAnalysis(object):
                 self.analysed_result.append(trace_resource)
 
 
-def match_paths(paths1, paths2):
+def match_paths(path1, paths2):
     """
-    Given two sequences of paths, match every paths in paths1 with paths in
-    paths2 using a common suffix. Yield a sequences of the top matched path
+    Given a single path1 and a sequences of paths paths2, match path1 with paths in
+    paths2 using a common suffix. Yield a sequences of the top matched paths from path2
     """
     cp1 = defaultdict(set)
 
     for p2 in paths2:
-        cmn, lgth = pathutils.common_path_suffix(paths1, p2)
+        cmn, lgth = pathutils.common_path_suffix(path1, p2)
         if cmn:
             cp1[lgth].add(p2)
 

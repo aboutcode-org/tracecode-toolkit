@@ -97,6 +97,8 @@ def cli(develop, deploy, json):
 
 
 def is_json_path(location):
+    """Test if the input location file is a valid json file or not.
+    """
     if filetype.is_file(location):
         try:
             with open(location) as jsonfile:
