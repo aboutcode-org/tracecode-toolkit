@@ -27,14 +27,73 @@
 from __future__ import print_function
 from __future__ import absolute_import
 
+
 from collections import defaultdict
-import logging
+from collections import OrderedDict
+import copy
+import sys
+
+import attr
+from scancode.resource import Resource
 from scancode.resource import VirtualCodebase
+from scancode.resource import to_decoded_posix_path
+from six import string_types
 
 from tracecode import pathutils
 from tracecode import utils
 
-logger = logging.getLogger(__name__)
+# Tracing flags
+TRACE = False
+TRACE_DEEP = False
+
+
+def logger_debug(*args):
+    pass
+
+
+if TRACE or TRACE_DEEP:
+    import logging
+    logger = logging.getLogger(__name__)
+    # logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
+    logging.basicConfig(stream=sys.stdout)
+    logger.setLevel(logging.DEBUG)
+
+    def logger_debug(*args):
+        return logger.debug(
+            ' '.join(isinstance(a, string_types) and a or repr(a) for a in args))
+
+
+class TracecodeResource(object):
+
+    def __init__(self, resource):
+        self.resource = resource
+        self.matched_resources = []
+
+    def to_dict(self):
+        res = self.resource.to_dict()
+        resources_result = []
+        if self.matched_resources:
+            for resource in self.matched_resources:
+                resources_result.append(resource.to_dict())
+        res['matched_resources'] = resources_result
+        return res
+
+    def _asdict(self):
+        """
+        Return dictionary format of the object for JSON serialization.
+        """
+        return self.to_dict()
+
+
+class MatchedResource(object):
+
+    def __init__(self, path):
+        self.path = path
+
+    def to_dict(self):
+        res = OrderedDict()
+        res['path'] = self.path
+        return res
 
 
 class DeploymentAnalysis(object):
@@ -56,7 +115,7 @@ class DeploymentAnalysis(object):
 
         self.options = options
         self.errors = []
-        self.results = []
+        self.analysed_result = []
 
         self.compute()
         
@@ -68,29 +127,33 @@ class DeploymentAnalysis(object):
             self.deploy_paths.append(resource.path)
         for resource in self.develop_codebase.walk():
             self.develop_paths.append(resource.path)
-
-        self.results = list(match_paths(self.deploy_paths, self.develop_paths))
-        return self.results
+        
+        for resource in self.develop_codebase.walk():
+            path  = resource.path
+            trace_resource = TracecodeResource(resource)
+            for matched_path in match_paths(path, self.deploy_paths):
+                matched_resource = MatchedResource(matched_path)
+                trace_resource.matched_resources.append(matched_resource)
+            if trace_resource.matched_resources:
+                self.analysed_result.append(trace_resource)
 
 
 def match_paths(paths1, paths2):
     """
     Given two sequences of paths, match every paths in paths1 with paths in
-    paths2 using a common suffix. Yield a sequences of the top match tuples
-    (p1, p2,)
+    paths2 using a common suffix. Yield a sequences of the top matched path
     """
-    for p1 in paths1:
-        cp1 = defaultdict(set)
+    cp1 = defaultdict(set)
 
-        for p2 in paths2:
-            cmn, lgth = pathutils.common_path_suffix(p1, p2)
-            if cmn:
-                cp1[lgth].add(p2)
+    for p2 in paths2:
+        cmn, lgth = pathutils.common_path_suffix(paths1, p2)
+        if cmn:
+            cp1[lgth].add(p2)
 
-        if cp1:
-            tops = cp1[max(cp1)]
-            # do not keep multiple matches of len 1: these are filename matches
-            # and are too weak to be valid in most cases
-            if not(max(cp1) == 1 and len(tops) > 1):
-                for top in tops:
-                    yield p1, top
+    if cp1:
+        tops = cp1[max(cp1)]
+        # do not keep multiple matches of len 1: these are filename matches
+        # and are too weak to be valid in most cases
+        if not(max(cp1) == 1 and len(tops) > 1):
+            for top in tops:
+                yield  top
