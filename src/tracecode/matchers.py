@@ -63,6 +63,8 @@ if TRACE or TRACE_DEEP:
 
 
 class TracecodeResource(object):
+    """Wrapper class to contain resource and matched resources information.
+    """
 
     def __init__(self, resource):
         self.resource = resource
@@ -85,6 +87,8 @@ class TracecodeResource(object):
 
 
 class MatchedResource(object):
+    """Class to represent the matched resource information.
+    """
 
     def __init__(self, path):
         self.path = path
@@ -123,13 +127,13 @@ class DeploymentAnalysis(object):
         self.analysed_result = []
 
         self.compute()
-        
+
     def compute(self):
         """
         Compute (or re-compute) the analysis, return and store results.
         """
         for resource in self.develop_codebase.walk():
-            path  = resource.path
+            path = resource.path
             trace_resource = TracecodeResource(resource)
             for matched_path in match_paths(path, self.deploy_paths):
                 matched_resource = MatchedResource(matched_path)
@@ -156,4 +160,4 @@ def match_paths(paths1, paths2):
         # and are too weak to be valid in most cases
         if not(max(cp1) == 1 and len(tops) > 1):
             for top in tops:
-                yield  top
+                yield top

@@ -81,7 +81,7 @@ class TestPathUtils(unittest.TestCase):
 
     def test_common_path_prefix10(self):
         test = pathutils.common_path_prefix('/a/b/c.txt',
-                                                     '/a/b/b.txt')
+                                            '/a/b/b.txt')
         assert ('a/b', 2) == test
 
     def test_common_path_prefix11(self):
@@ -90,7 +90,7 @@ class TestPathUtils(unittest.TestCase):
 
     def test_common_path_prefix12(self):
         test = pathutils.common_path_prefix('/a/c/e/x.txt',
-                                                     '/a/d/a.txt')
+                                            '/a/d/a.txt')
         assert ('a', 1) == test
 
     def test_common_path_prefix13(self):
@@ -143,12 +143,12 @@ class TestPathUtils(unittest.TestCase):
 
     def test_common_path_suffix_handles_relative_subpath(self):
         test = pathutils.common_path_suffix('zsds/adsds/a/b/b/c',
-                                                     'a//a/d//b/c')
+                                            'a//a/d//b/c')
         assert ('b/c', 2) == test
 
     def test_common_path_suffix_ignore_and_strip_trailing_slash(self):
         test = pathutils.common_path_suffix('zsds/adsds/a/b/b/c/',
-                                                     'a//a/d//b/c/')
+                                            'a//a/d//b/c/')
         assert ('b/c', 2) == test
 
     def test_common_path_suffix_return_None_if_no_common_suffix(self):

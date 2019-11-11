@@ -47,7 +47,8 @@ class TestCLI(FileBasedTesting):
         develop_json = self.get_test_loc('cli/empty/develop.json')
         deploy_json = self.get_test_loc('cli/empty/deploy.json')
         result_file = self.get_temp_file('json')
-        args = ['--develop', develop_json, '--deploy',deploy_json, '-j', result_file]
+        args = ['--develop', develop_json, '--deploy',
+                deploy_json, '-j', result_file]
         result = run_scan_click(args)
         expected = 'Develop path is not a json file:'
         assert expected in result.output
@@ -59,7 +60,8 @@ class TestCLI(FileBasedTesting):
 
         result_file = self.get_temp_file('json')
 
-        args = ['--develop', develop_json, '--deploy',deploy_json, '-j', result_file]
+        args = ['--develop', develop_json, '--deploy',
+                deploy_json, '-j', result_file]
         run_scan_click(args)
 
         check_json_scan(expected_json, result_file, regen=True)
@@ -90,7 +92,8 @@ class TestCLI(FileBasedTesting):
         deploy_json = 'cli/not_existing/not_existing.json'
         result_file = self.get_temp_file('json')
 
-        args = ['--develop', develop_json, '--deploy',deploy_json,  '-j', result_file]
+        args = ['--develop', develop_json, '--deploy',
+                deploy_json,  '-j', result_file]
         result = run_scan_click(args, expected_rc=2)
         expected = 'Error: Invalid value for "--develop": Path "cli/not_existing/not_existing.json" does not exist.'
         assert expected in result.output
@@ -109,7 +112,7 @@ class TestCLI(FileBasedTesting):
         develop_json = self.get_test_loc('cli/invalid/deploy_notjson')
         is_json_file = cli.is_json_path(develop_json)
         assert is_json_file == False
-    
+
     def test_is_json_path_with_empty_json_file(self):
         develop_json = self.get_test_loc('cli/empty/deploy.json')
         is_json_file = cli.is_json_path(develop_json)
