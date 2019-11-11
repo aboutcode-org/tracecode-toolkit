@@ -108,3 +108,4 @@ def is_json_path(location):
         except:
             return False
     return False
+

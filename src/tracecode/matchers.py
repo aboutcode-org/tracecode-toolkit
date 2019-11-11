@@ -165,3 +165,4 @@ def match_paths(path1, paths2):
         if not(max(cp1) == 1 and len(tops) > 1):
             for top in tops:
                 yield top
+
