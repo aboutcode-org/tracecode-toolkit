@@ -18,9 +18,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples"
+          "path": "samples",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -40,9 +42,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/README"
+          "path": "samples/README",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -62,9 +66,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/screenshot.png"
+          "path": "samples/screenshot.png",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -84,9 +90,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/subpackage2"
+          "path": "samples/subpackage2",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -106,9 +114,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/arch"
+          "path": "samples/arch",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -128,9 +138,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/arch/zlib.tar.gz"
+          "path": "samples/arch/zlib.tar.gz",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -150,9 +162,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups"
+          "path": "samples/JGroups",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -172,9 +186,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/EULA"
+          "path": "samples/JGroups/EULA",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -194,9 +210,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/LICENSE"
+          "path": "samples/JGroups/LICENSE",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -216,9 +234,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/licenses"
+          "path": "samples/JGroups/licenses",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -238,9 +258,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/licenses/apache-1.1.txt"
+          "path": "samples/JGroups/licenses/apache-1.1.txt",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -260,9 +282,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/licenses/apache-2.0.txt"
+          "path": "samples/JGroups/licenses/apache-2.0.txt",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -282,9 +306,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/licenses/bouncycastle.txt"
+          "path": "samples/JGroups/licenses/bouncycastle.txt",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -304,9 +330,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/licenses/cpl-1.0.txt"
+          "path": "samples/JGroups/licenses/cpl-1.0.txt",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -326,9 +354,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/licenses/lgpl.txt"
+          "path": "samples/JGroups/licenses/lgpl.txt",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -348,9 +378,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/src"
+          "path": "samples/JGroups/src",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -370,9 +402,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/src/FixedMembershipToken.java"
+          "path": "samples/JGroups/src/FixedMembershipToken.java",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -392,9 +426,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/src/GuardedBy.java"
+          "path": "samples/JGroups/src/GuardedBy.java",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -414,9 +450,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/src/ImmutableReference.java"
+          "path": "samples/JGroups/src/ImmutableReference.java",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -436,9 +474,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/src/RATE_LIMITER.java"
+          "path": "samples/JGroups/src/RATE_LIMITER.java",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -458,9 +498,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/src/RouterStub.java"
+          "path": "samples/JGroups/src/RouterStub.java",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -480,9 +522,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/src/RouterStubManager.java"
+          "path": "samples/JGroups/src/RouterStubManager.java",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -502,9 +546,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/JGroups/src/S3_PING.java"
+          "path": "samples/JGroups/src/S3_PING.java",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -524,9 +570,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/subpackage"
+          "path": "samples/subpackage",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -546,9 +594,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/subpackage/src"
+          "path": "samples/subpackage/src",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -568,9 +618,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib"
+          "path": "samples/zlib",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -590,9 +642,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/adler32.c"
+          "path": "samples/zlib/adler32.c",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -612,9 +666,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/deflate.c"
+          "path": "samples/zlib/deflate.c",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -634,9 +690,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/deflate.h"
+          "path": "samples/zlib/deflate.h",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -656,9 +714,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/zlib.h"
+          "path": "samples/zlib/zlib.h",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -678,9 +738,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/zutil.c"
+          "path": "samples/zlib/zutil.c",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -700,9 +762,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/zutil.h"
+          "path": "samples/zlib/zutil.h",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -722,9 +786,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/ada"
+          "path": "samples/zlib/ada",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -744,9 +810,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/ada/zlib.ads"
+          "path": "samples/zlib/ada/zlib.ads",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -766,9 +834,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/dotzlib"
+          "path": "samples/zlib/dotzlib",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -788,9 +858,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/dotzlib/AssemblyInfo.cs"
+          "path": "samples/zlib/dotzlib/AssemblyInfo.cs",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -810,9 +882,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/dotzlib/ChecksumImpl.cs"
+          "path": "samples/zlib/dotzlib/ChecksumImpl.cs",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -832,9 +906,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/dotzlib/LICENSE_1_0.txt"
+          "path": "samples/zlib/dotzlib/LICENSE_1_0.txt",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -854,9 +930,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/dotzlib/readme.txt"
+          "path": "samples/zlib/dotzlib/readme.txt",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -876,9 +954,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/gcc_gvmat64"
+          "path": "samples/zlib/gcc_gvmat64",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -898,9 +978,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/gcc_gvmat64/gvmat64.S"
+          "path": "samples/zlib/gcc_gvmat64/gvmat64.S",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -920,9 +1002,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/infback9"
+          "path": "samples/zlib/infback9",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -942,9 +1026,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/infback9/infback9.c"
+          "path": "samples/zlib/infback9/infback9.c",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -964,9 +1050,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/infback9/infback9.h"
+          "path": "samples/zlib/infback9/infback9.h",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -986,9 +1074,11 @@
       "is_source": false,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/iostream2"
+          "path": "samples/zlib/iostream2",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -1008,9 +1098,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/iostream2/zstream.h"
+          "path": "samples/zlib/iostream2/zstream.h",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -1030,9 +1122,11 @@
       "is_source": true,
       "is_script": false,
       "scan_errors": [],
-      "matched_resources": [
+      "deployed_to": [
         {
-          "path": "samples/zlib/iostream2/zstream_test.cpp"
+          "path": "samples/zlib/iostream2/zstream_test.cpp",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     }

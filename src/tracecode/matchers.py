@@ -76,7 +76,7 @@ class TracecodeResource(object):
         if self.matched_resources:
             for resource in self.matched_resources:
                 resources_result.append(resource.to_dict())
-        res['matched_resources'] = resources_result
+        res['deployed_to'] = resources_result
         return res
 
     def _asdict(self):
@@ -90,12 +90,16 @@ class MatchedResource(object):
     """Class to represent the matched resource information.
     """
 
-    def __init__(self, path):
+    def __init__(self, path, matcher_type, confidence):
         self.path = path
+        self.matcher = matcher_type
+        self.confidence = confidence
 
     def to_dict(self):
         res = OrderedDict()
         res['path'] = self.path
+        res['matcher'] = self.matcher
+        res['confidence'] = self.confidence
         return res
 
 
@@ -136,7 +140,7 @@ class DeploymentAnalysis(object):
             path = resource.path
             trace_resource = TracecodeResource(resource)
             for matched_path in match_paths(path, self.deploy_paths):
-                matched_resource = MatchedResource(matched_path)
+                matched_resource = MatchedResource(matched_path, 'path match', 'perfect')
                 trace_resource.matched_resources.append(matched_resource)
             if trace_resource.matched_resources:
                 self.analysed_result.append(trace_resource)
