@@ -150,15 +150,25 @@ class DeploymentAnalysis(object):
                 self.analysed_result.append(trace_resource)
 
 
+def remove_file_suffix(path):
+    """Remove the file prefix in the path, this is to match if the source has prefix like .java, and the deploy has the prefix like .class
+    """
+    if '.' in path and '/' in path and path.rindex('/') < path.rindex('.'):
+        return path.rsplit('.', 1)[0]
+    return path
+
+
 def match_paths(path1, paths2):
     """
     Given a single path1 and a sequences of paths paths2, match path1 with paths in
     paths2 using a common suffix. Yield a sequences of the top matched paths from path2
     """
     cp1 = defaultdict(set)
-
+ 
+    path1_remove_filesuffix = remove_file_suffix(path1)
     for p2 in paths2:
-        cmn, lgth = pathutils.common_path_suffix(path1, p2)
+        path2_remove_filesuffix = remove_file_suffix(p2)
+        cmn, lgth = pathutils.common_path_suffix(path1_remove_filesuffix, path2_remove_filesuffix)
         if cmn:
             cp1[lgth].add(p2)
 

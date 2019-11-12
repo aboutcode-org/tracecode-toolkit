@@ -603,30 +603,6 @@
       ]
     },
     {
-      "path": "samples/src/zlib",
-      "type": "directory",
-      "date": null,
-      "sha1": null,
-      "md5": null,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "deployed_to": [
-        {
-          "path": "samples/zlib",
-          "matcher": "path match",
-          "confidence": "perfect"
-        }
-      ]
-    },
-    {
       "path": "samples/src/zlib/adler32.c",
       "type": "file",
       "date": "2019-09-10",
@@ -671,6 +647,11 @@
           "path": "samples/zlib/deflate.c",
           "matcher": "path match",
           "confidence": "perfect"
+        },
+        {
+          "path": "samples/zlib/deflate.h",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -691,6 +672,11 @@
       "is_script": false,
       "scan_errors": [],
       "deployed_to": [
+        {
+          "path": "samples/zlib/deflate.c",
+          "matcher": "path match",
+          "confidence": "perfect"
+        },
         {
           "path": "samples/zlib/deflate.h",
           "matcher": "path match",
@@ -743,6 +729,11 @@
           "path": "samples/zlib/zutil.c",
           "matcher": "path match",
           "confidence": "perfect"
+        },
+        {
+          "path": "samples/zlib/zutil.h",
+          "matcher": "path match",
+          "confidence": "perfect"
         }
       ]
     },
@@ -763,6 +754,11 @@
       "is_script": false,
       "scan_errors": [],
       "deployed_to": [
+        {
+          "path": "samples/zlib/zutil.c",
+          "matcher": "path match",
+          "confidence": "perfect"
+        },
         {
           "path": "samples/zlib/zutil.h",
           "matcher": "path match",
@@ -1028,6 +1024,11 @@
       "scan_errors": [],
       "deployed_to": [
         {
+          "path": "samples/zlib/infback9/infback9.h",
+          "matcher": "path match",
+          "confidence": "perfect"
+        },
+        {
           "path": "samples/zlib/infback9/infback9.c",
           "matcher": "path match",
           "confidence": "perfect"
@@ -1053,6 +1054,11 @@
       "deployed_to": [
         {
           "path": "samples/zlib/infback9/infback9.h",
+          "matcher": "path match",
+          "confidence": "perfect"
+        },
+        {
+          "path": "samples/zlib/infback9/infback9.c",
           "matcher": "path match",
           "confidence": "perfect"
         }
