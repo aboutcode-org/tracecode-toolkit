@@ -47,22 +47,10 @@ TRACE_DEEP = False
 
 
 PATH_MATCH = 'path match'
-PERFECT_CONFIDENCE = 'perfect'
-
-def logger_debug(*args):
-    pass
-
-
-if TRACE or TRACE_DEEP:
-    import logging
-    logger = logging.getLogger(__name__)
-    # logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
-    logging.basicConfig(stream=sys.stdout)
-    logger.setLevel(logging.DEBUG)
-
-    def logger_debug(*args):
-        return logger.debug(
-            ' '.join(isinstance(a, string_types) and a or repr(a) for a in args))
+CHECKSUM_MATCH = 'checksum match'
+HIGH_CONFIDENCE = 'high'
+MEDIUM_CONFIDENCE = 'medium'
+LOW_CONFIDENCE = 'low'
 
 
 class TracecodeResource(object):
@@ -144,14 +132,19 @@ class DeploymentAnalysis(object):
             trace_resource = TracecodeResource(resource)
             for matched_path in match_paths(path, self.deploy_paths):
                 matched_resource = MatchedResource(
-                    matched_path, PATH_MATCH, PERFECT_CONFIDENCE)
+                    matched_path, PATH_MATCH, HIGH_CONFIDENCE)
                 trace_resource.matched_resources.append(matched_resource)
             if trace_resource.matched_resources:
                 self.analysed_result.append(trace_resource)
 
 
 def remove_file_suffix(path):
-    """Remove the file prefix in the path, this is to match if the source has prefix like .java, and the deploy has the prefix like .class
+    """Remove the file prefix in the path.
+    This is to match if the source has prefix like .java, and the deploy has the prefix like .class
+    For example, passing
+    /home/test/src/test.java
+    will be returning
+    /home/test/src/test
     """
     if '.' in path and '/' in path and path.rindex('/') < path.rindex('.'):
         return path.rsplit('.', 1)[0]
@@ -164,11 +157,12 @@ def match_paths(path1, paths2):
     paths2 using a common suffix. Yield a sequences of the top matched paths from path2
     """
     cp1 = defaultdict(set)
- 
+
     path1_remove_filesuffix = remove_file_suffix(path1)
     for p2 in paths2:
         path2_remove_filesuffix = remove_file_suffix(p2)
-        cmn, lgth = pathutils.common_path_suffix(path1_remove_filesuffix, path2_remove_filesuffix)
+        cmn, lgth = pathutils.common_path_suffix(
+            path1_remove_filesuffix, path2_remove_filesuffix)
         if cmn:
             cp1[lgth].add(p2)
 
