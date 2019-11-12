@@ -31,12 +31,12 @@ from __future__ import unicode_literals
 import os
 
 from commoncode.testcase import FileBasedTesting
-from testing_utils import check_json_scan
 
 from tracecode.matchers import DeploymentAnalysis
 from tracecode.matchers import match_paths
 from tracecode.matchers import remove_file_suffix
 
+from testing_utils import check_json_scan
 
 class TestMatchers(FileBasedTesting):
 
