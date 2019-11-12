@@ -146,7 +146,7 @@ def remove_file_suffix(path):
     will be returning
     /home/test/src/test
     """
-    if '.' in path and '/' in path and path.rindex('/') < path.rindex('.'):
+    if path.endswith(('.java', '.class', '.c', '.cpp' '.obj', '.py', '.pyc')):
         return path.rsplit('.', 1)[0]
     return path
 

@@ -54,9 +54,9 @@ class TestCLI(FileBasedTesting):
         assert expected in result.output
 
     def test_cli_with_regular_json(self):
-        develop_json = self.get_test_loc('cli/codebase/develop.json')
-        deploy_json = self.get_test_loc('cli/codebase/deploy.json')
-        expected_json = self.get_test_loc('cli/codebase/expected.json')
+        develop_json = self.get_test_loc('cli/basic/develop.json')
+        deploy_json = self.get_test_loc('cli/basic/deploy.json')
+        expected_json = self.get_test_loc('cli/basic/expected.json')
 
         result_file = self.get_temp_file('json')
 

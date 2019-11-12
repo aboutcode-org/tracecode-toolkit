@@ -33,6 +33,7 @@ import os
 from commoncode.testcase import FileBasedTesting
 from testing_utils import check_json_scan
 
+from tracecode.matchers import DeploymentAnalysis
 from tracecode.matchers import match_paths
 from tracecode.matchers import remove_file_suffix
 
@@ -76,3 +77,10 @@ class TestMatchers(FileBasedTesting):
         expected = [u'com/nexb/plugin/ui/readme']
         result = match_paths(path1, path2)
         assert list(result) == expected
+
+    def test_deploymentanalysis_class(self):
+        develop_json = self.get_test_loc('matchers/class/develop.json')
+        deploy_json = self.get_test_loc('matchers/class/deploy.json')
+        da = DeploymentAnalysis(develop_json, deploy_json, None)
+        assert da.analysed_result is not None
+
