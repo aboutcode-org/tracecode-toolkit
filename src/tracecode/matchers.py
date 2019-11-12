@@ -46,6 +46,9 @@ TRACE = False
 TRACE_DEEP = False
 
 
+PATH_MATCH = 'path match'
+PERFECT_CONFIDENCE = 'perfect'
+
 def logger_debug(*args):
     pass
 
@@ -140,7 +143,8 @@ class DeploymentAnalysis(object):
             path = resource.path
             trace_resource = TracecodeResource(resource)
             for matched_path in match_paths(path, self.deploy_paths):
-                matched_resource = MatchedResource(matched_path, 'path match', 'perfect')
+                matched_resource = MatchedResource(
+                    matched_path, PATH_MATCH, PERFECT_CONFIDENCE)
                 trace_resource.matched_resources.append(matched_resource)
             if trace_resource.matched_resources:
                 self.analysed_result.append(trace_resource)
