@@ -47,7 +47,7 @@ def write_json(analysis, outfile):
         ('tracecode_options', analysis.options),
         ('tracecode_version', __version__),
         ('tracecode_errors', analysis.errors),
-        ('tracecode_results', analysis.analysed_result),
+        ('tracecode_results', analysis.analysed_result.values()),
 
     ])
 

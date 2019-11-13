@@ -30,13 +30,11 @@ from __future__ import absolute_import
 
 from collections import defaultdict
 from collections import OrderedDict
-import sys
 
 import attr
 from scancode.resource import Resource
 from scancode.resource import VirtualCodebase
 from scancode.resource import to_decoded_posix_path
-from six import string_types
 
 from tracecode import pathutils
 from tracecode import utils
@@ -48,6 +46,7 @@ TRACE_DEEP = False
 
 PATH_MATCH = 'path match'
 CHECKSUM_MATCH = 'checksum match'
+EXACT_CONFIDENCE = 'perfect'
 HIGH_CONFIDENCE = 'high'
 MEDIUM_CONFIDENCE = 'medium'
 LOW_CONFIDENCE = 'low'
@@ -119,7 +118,7 @@ class DeploymentAnalysis(object):
 
         self.options = options
         self.errors = []
-        self.analysed_result = []
+        self.analysed_result = OrderedDict()
 
         self.compute()
 
@@ -127,19 +126,62 @@ class DeploymentAnalysis(object):
         """
         Compute (or re-compute) the analysis, return and store results.
         """
+        self.path_match()
+        self.checksum_match()
+
+    def path_match(self):
+        """
+        Path matching for the develop and deploy resources.
+        """
         for resource in self.develop_codebase.walk():
             path = resource.path
-            trace_resource = TracecodeResource(resource)
+
+            if self.analysed_result.get(path):
+                trace_resource = self.analysed_result.get(path)
+            else:
+                trace_resource = TracecodeResource(resource)
+                self.analysed_result[path] = trace_resource
+
             for matched_path in match_paths(path, self.deploy_paths):
                 matched_resource = MatchedResource(
                     matched_path, PATH_MATCH, HIGH_CONFIDENCE)
                 trace_resource.matched_resources.append(matched_resource)
             if trace_resource.matched_resources:
-                self.analysed_result.append(trace_resource)
+                self.analysed_result[path] = trace_resource
+
+    def checksum_match(self):
+        """
+        Compare the checksum of the develop and deploy resources, and get the matched path which has the same checksum between develop and deploy resources
+        """
+        deploy_checksumpath_map = OrderedDict()
+        for resource in self.deploy_codebase.walk():
+            checksum = resource.sha1
+            path = resource.path
+            if checksum:
+                deploy_checksumpath_map[checksum] = path
+
+        for resource in self.develop_codebase.walk():
+            checksum = resource.sha1
+            path = resource.path
+
+            if self.analysed_result.get(path):
+                trace_resource = self.analysed_result.get(path)
+            else:
+                trace_resource = TracecodeResource(resource)
+                self.analysed_result[path] = trace_resource
+
+            if deploy_checksumpath_map.get(checksum):
+                matched_path = deploy_checksumpath_map.get(checksum)
+                matched_resource = MatchedResource(
+                    matched_path, CHECKSUM_MATCH, EXACT_CONFIDENCE)
+                trace_resource.matched_resources.append(matched_resource)
+            if trace_resource.matched_resources:
+                self.analysed_result[path] = trace_resource
 
 
 def remove_file_suffix(path):
-    """Remove the file prefix in the path.
+    """
+    Remove the file prefix in the path.
     This is to match if the source has prefix like .java, and the deploy has the prefix like .class
     For example, passing
     /home/test/src/test.java
