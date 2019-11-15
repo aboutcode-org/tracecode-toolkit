@@ -129,6 +129,18 @@ class DeploymentAnalysis(object):
         self.path_match()
         self.checksum_match()
 
+    def create_or_get_tracecoderesource(self, resource):
+        """
+         Create a TracecodeResource object base on the passing resource or return an existing one by query with the path of the resource
+        """
+        path = resource.path
+        if self.analysed_result.get(path):
+            trace_resource = self.analysed_result.get(path)
+        else:
+            trace_resource = TracecodeResource(resource)
+            self.analysed_result[path] = trace_resource
+        return trace_resource
+
     def path_match(self):
         """
         Path matching for the develop and deploy resources.
@@ -136,16 +148,13 @@ class DeploymentAnalysis(object):
         for resource in self.develop_codebase.walk():
             path = resource.path
 
-            if self.analysed_result.get(path):
-                trace_resource = self.analysed_result.get(path)
-            else:
-                trace_resource = TracecodeResource(resource)
-                self.analysed_result[path] = trace_resource
+            trace_resource = self.create_or_get_tracecoderesource(resource)
 
             for matched_path in match_paths(path, self.deploy_paths):
                 matched_resource = MatchedResource(
                     matched_path, PATH_MATCH, HIGH_CONFIDENCE)
                 trace_resource.matched_resources.append(matched_resource)
+
             if trace_resource.matched_resources:
                 self.analysed_result[path] = trace_resource
 
@@ -164,11 +173,7 @@ class DeploymentAnalysis(object):
             checksum = resource.sha1
             path = resource.path
 
-            if self.analysed_result.get(path):
-                trace_resource = self.analysed_result.get(path)
-            else:
-                trace_resource = TracecodeResource(resource)
-                self.analysed_result[path] = trace_resource
+            trace_resource = self.create_or_get_tracecoderesource(resource)
 
             if deploy_checksumpath_map.get(checksum):
                 matched_path = deploy_checksumpath_map.get(checksum)
