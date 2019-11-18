@@ -63,13 +63,13 @@
       "deployed_to": [
         {
           "path": "samples/README",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/README",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -92,13 +92,13 @@
       "deployed_to": [
         {
           "path": "samples/screenshot.png",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/screenshot.png",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -169,13 +169,13 @@
       "deployed_to": [
         {
           "path": "samples/arch/zlib.tar.gz",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/arch/zlib.tar.gz",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -222,13 +222,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/EULA",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/EULA",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -251,13 +251,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/LICENSE",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/LICENSE",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -304,13 +304,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/licenses/apache-1.1.txt",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/licenses/apache-1.1.txt",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -333,13 +333,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/licenses/apache-2.0.txt",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/licenses/apache-2.0.txt",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -362,13 +362,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/licenses/bouncycastle.txt",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/licenses/bouncycastle.txt",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -391,13 +391,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/licenses/cpl-1.0.txt",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/licenses/cpl-1.0.txt",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -420,13 +420,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/licenses/lgpl.txt",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/licenses/lgpl.txt",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -473,13 +473,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/src/FixedMembershipToken.java",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/src/FixedMembershipToken.java",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -502,13 +502,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/src/GuardedBy.java",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/src/GuardedBy.java",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -531,13 +531,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/src/ImmutableReference.java",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/src/ImmutableReference.java",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -560,13 +560,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/src/RATE_LIMITER.java",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/src/RATE_LIMITER.java",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -589,13 +589,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/src/RouterStub.java",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/src/RouterStub.java",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -618,13 +618,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/src/RouterStubManager.java",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/src/RouterStubManager.java",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -647,13 +647,13 @@
       "deployed_to": [
         {
           "path": "samples/JGroups/src/S3_PING.java",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/JGroups/src/S3_PING.java",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -748,13 +748,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/adler32.c",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/adler32.c",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -777,13 +777,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/deflate.c",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/deflate.c",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -806,13 +806,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/deflate.h",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/deflate.h",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -835,13 +835,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/zlib.h",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/zlib.h",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -864,13 +864,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/zutil.c",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/zutil.c",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -893,13 +893,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/zutil.h",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/zutil.h",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -946,13 +946,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/ada/zlib.ads",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/ada/zlib.ads",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -999,13 +999,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/dotzlib/AssemblyInfo.cs",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/dotzlib/AssemblyInfo.cs",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -1028,13 +1028,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/dotzlib/ChecksumImpl.cs",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/dotzlib/ChecksumImpl.cs",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -1057,13 +1057,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/dotzlib/LICENSE_1_0.txt",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/dotzlib/LICENSE_1_0.txt",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -1086,13 +1086,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/dotzlib/readme.txt",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/dotzlib/readme.txt",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -1139,13 +1139,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/gcc_gvmat64/gvmat64.S",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/gcc_gvmat64/gvmat64.S",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -1192,13 +1192,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/infback9/infback9.c",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/infback9/infback9.c",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -1221,13 +1221,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/infback9/infback9.h",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/infback9/infback9.h",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -1274,13 +1274,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/iostream2/zstream.h",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/iostream2/zstream.h",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
@@ -1303,13 +1303,13 @@
       "deployed_to": [
         {
           "path": "samples/zlib/iostream2/zstream_test.cpp",
-          "matcher": "path match",
-          "confidence": "high"
+          "matcher": "checksum match",
+          "confidence": "perfect"
         },
         {
           "path": "samples/zlib/iostream2/zstream_test.cpp",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     }
