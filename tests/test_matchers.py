@@ -38,6 +38,7 @@ from tracecode.matchers import remove_file_suffix
 
 from testing_utils import check_json_scan
 
+
 class TestMatchers(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')

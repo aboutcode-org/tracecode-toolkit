@@ -129,7 +129,6 @@ class DeploymentAnalysis(object):
         self.checksum_match()
         self.path_match()
 
-
     def create_or_get_tracecoderesource(self, resource):
         """
          Create a TracecodeResource object base on the passing resource or return an existing one by query with the path of the resource
@@ -221,4 +220,3 @@ def match_paths(path1, paths2):
         if not(max(cp1) == 1 and len(tops) > 1):
             for top in tops:
                 yield top
-

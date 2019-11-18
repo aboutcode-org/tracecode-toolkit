@@ -92,7 +92,8 @@ def cli(develop, deploy, json):
         click.echo('Deploy path is not a json file: ' + deploy)
         return
 
-    analysis = matchers.DeploymentAnalysis(develop=develop, deploy=deploy, options=options)
+    analysis = matchers.DeploymentAnalysis(
+        develop=develop, deploy=deploy, options=options)
     write_json(analysis=analysis, outfile=json)
 
 
