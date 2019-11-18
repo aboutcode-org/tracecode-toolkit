@@ -126,8 +126,9 @@ class DeploymentAnalysis(object):
         """
         Compute (or re-compute) the analysis, return and store results.
         """
-        self.path_match()
         self.checksum_match()
+        self.path_match()
+
 
     def create_or_get_tracecoderesource(self, resource):
         """
