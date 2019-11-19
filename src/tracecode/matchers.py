@@ -131,7 +131,7 @@ class DeploymentAnalysis(object):
 
     def create_or_get_tracecoderesource(self, resource):
         """
-         Create a TracecodeResource object base on the passing resource or return an existing one by query with the path of the resource
+         Create a TracecodeResource object based on the passing resource or return an existing one by query with the path of the resource
         """
         path = resource.path
         if self.analysed_result.get(path):
@@ -160,23 +160,29 @@ class DeploymentAnalysis(object):
 
     def checksum_match(self):
         """
-        Compare the checksum of the develop and deploy resources, and get the matched path which has the same checksum between develop and deploy resources
+        Compare the sha1 and md5 of the develop and deploy resources, and get the matched path which has the same checksum between develop and deploy resources
         """
-        deploy_checksumpath_map = OrderedDict()
+        deploy_checksum_map = OrderedDict()
         for resource in self.deploy_codebase.walk():
-            checksum = resource.sha1
+            sha1 = resource.sha1
+            md5 = resource.md5
             path = resource.path
-            if checksum:
-                deploy_checksumpath_map[checksum] = path
+            if sha1:
+                deploy_checksum_map[sha1] = path
+            if md5:
+                deploy_checksum_map[md5] = path
 
         for resource in self.develop_codebase.walk():
-            checksum = resource.sha1
+            sha1 = resource.sha1
+            md5 = resource.md5
             path = resource.path
 
             trace_resource = self.create_or_get_tracecoderesource(resource)
-
-            if deploy_checksumpath_map.get(checksum):
-                matched_path = deploy_checksumpath_map.get(checksum)
+            matched_path = deploy_checksum_map.get(sha1)
+            if not matched_path:
+                # If sha1 is empty or not matched, try md5
+                matched_path = deploy_checksum_map.get(md5)
+            if matched_path:
                 matched_resource = MatchedResource(
                     matched_path, CHECKSUM_MATCH, EXACT_CONFIDENCE)
                 trace_resource.matched_resources.append(matched_resource)
