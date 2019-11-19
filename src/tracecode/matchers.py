@@ -31,17 +31,11 @@ from __future__ import absolute_import
 from collections import defaultdict
 from collections import OrderedDict
 
-import attr
 from scancode.resource import Resource
 from scancode.resource import VirtualCodebase
-from scancode.resource import to_decoded_posix_path
 
 from tracecode import pathutils
 from tracecode import utils
-
-# Tracing flags
-TRACE = False
-TRACE_DEEP = False
 
 
 PATH_MATCH = 'path match'
