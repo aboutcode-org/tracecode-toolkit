@@ -84,4 +84,3 @@ class TestMatchers(FileBasedTesting):
         deploy_json = self.get_test_loc('matchers/class/deploy.json')
         da = DeploymentAnalysis(develop_json, deploy_json, None)
         assert da.analysed_result is not None
-

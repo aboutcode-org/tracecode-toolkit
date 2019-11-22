@@ -96,12 +96,10 @@ class DeploymentAnalysis(object):
     def __init__(self, develop, deploy,  options):
         self.develop = develop
         self.develop_paths = []
-        #self.develop_paths = utils.get_paths_set_from_json(self.develop)
         self.develop_codebase = VirtualCodebase(self.develop)
 
         self.deploy = deploy
         self.deploy_paths = []
-        #self.deploy_paths = utils.get_paths_set_from_json(self.deploy)
         self.deploy_codebase = VirtualCodebase(self.deploy)
 
         for resource in self.deploy_codebase.walk():

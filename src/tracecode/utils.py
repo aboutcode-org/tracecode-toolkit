@@ -26,9 +26,6 @@
 from __future__ import absolute_import
 from __future__ import division
 
-from collections import OrderedDict
-import io
-import json
 import os
 
 
@@ -50,15 +47,3 @@ def get_notice():
     notice = acknowledgment_text.strip().replace('  ', '')
 
     return notice
-
-
-def get_paths_set_from_json(location):
-    """
-    Return the path set from a json input
-    """
-    if not os.path.exists(location):
-        return
-    with io.open(location, encoding='utf-8') as loc:
-        paths = json.load(loc, object_pairs_hook=OrderedDict)
-        if type(paths) == list:
-            return set(f for f in paths)
