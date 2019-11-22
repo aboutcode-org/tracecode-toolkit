@@ -117,3 +117,8 @@ class TestCLI(FileBasedTesting):
         develop_json = self.get_test_loc('cli/empty/deploy.json')
         is_json_file = cli.is_json_path(develop_json)
         assert is_json_file == False
+
+    def test_is_json_path_with_valid_json_file(self):
+        develop_json = self.get_test_loc('cli/valid/deploy.json')
+        is_json_file = cli.is_json_path(develop_json)
+        assert is_json_file == True

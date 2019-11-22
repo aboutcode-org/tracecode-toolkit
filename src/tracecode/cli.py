@@ -48,7 +48,6 @@ def write_json(analysis, outfile):
         ('tracecode_version', __version__),
         ('tracecode_errors', analysis.errors),
         ('tracecode_results', analysis.analysed_result.values()),
-
     ])
 
     simplejson.dump(results, outfile, iterable_as_array=True, indent=2)
@@ -84,7 +83,6 @@ def cli(develop, deploy, json):
         ('--deploy', deploy),
     ])
 
-    # FIXME: I am not we care about the paths having a .json extension.
     if not is_json_path(develop):
         click.echo('Develop path is not a json file:' + develop)
         return
