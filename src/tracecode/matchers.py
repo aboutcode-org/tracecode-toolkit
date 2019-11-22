@@ -67,6 +67,7 @@ class TracecodeResource(object):
     def _asdict(self):
         """
         Return dictionary format of the object for JSON serialization.
+        This will be used by the json dump.
         """
         return self.to_dict()
 
@@ -127,27 +128,6 @@ class DeploymentAnalysis(object):
         self.checksum_match()
         self.path_match()
 
-    def create_or_get_traceresource_by_resource(self, resource):
-        """
-         Create a TracecodeResource object based on the passing resource or return an existing one by query with the path of the resource
-        """
-        path = resource.path
-        if self.analysed_result.get(path):
-            trace_resource = self.analysed_result.get(path)
-        else:
-            trace_resource = TracecodeResource(resource)
-            self.analysed_result[path] = trace_resource
-        return trace_resource
-
-
-    def add_matched_resource_to_result(self, trace_resource):
-        """
-        If the trace_resource has the matched resource, append to the result
-        """
-        if trace_resource.matched_resources:
-            path = trace_resource.resource.path
-            self.analysed_result[path] = trace_resource
-
     def path_match(self):
         """
         Path matching for the develop and deploy resources.
@@ -172,39 +152,58 @@ class DeploymentAnalysis(object):
         # The key of deploy_checksum_map dictionary key is the sha1 or md5
         # value, value is the path
         for resource in self.deploy_codebase.walk():
+            path = resource.path
             sha1 = resource.sha1
             md5 = resource.md5
-            path = resource.path
             if sha1:
                 deploy_checksum_map[sha1] = path
             if md5:
                 deploy_checksum_map[md5] = path
 
         for resource in self.develop_codebase.walk():
+            path = resource.path
             sha1 = resource.sha1
             md5 = resource.md5
-            path = resource.path
 
             trace_resource = self.create_or_get_traceresource_by_resource(resource)
-            matched_path = deploy_checksum_map.get(sha1)
-            if not matched_path:
-                # If sha1 is empty or not matched, try md5
-                matched_path = deploy_checksum_map.get(md5)
+            # If sha1 or md5 value is found, it means the resource is matched.
+            matched_path = deploy_checksum_map.get(sha1) or deploy_checksum_map.get(md5)
             if matched_path:
-                matched_resource = MatchedResource(
-                    matched_path, CHECKSUM_MATCH, EXACT_CONFIDENCE)
+                matched_resource = MatchedResource(matched_path, CHECKSUM_MATCH, EXACT_CONFIDENCE)
                 trace_resource.matched_resources.append(matched_resource)
 
             self.add_matched_resource_to_result(trace_resource)
+
+    def create_or_get_traceresource_by_resource(self, resource):
+        """
+         Create a TracecodeResource object based on the passing resource or return an existing one by query with the path of the resource
+        """
+        path = resource.path
+        if self.analysed_result.get(path):
+            trace_resource = self.analysed_result.get(path)
+        else:
+            trace_resource = TracecodeResource(resource)
+            self.analysed_result[path] = trace_resource
+        return trace_resource
+
+
+    def add_matched_resource_to_result(self, trace_resource):
+        """
+        If the trace_resource has the matched resource, append to the result
+        """
+        if trace_resource.matched_resources:
+            path = trace_resource.resource.path
+            self.analysed_result[path] = trace_resource
 
 
 def remove_file_suffix(path):
     """
     Remove the file prefix in the path.
-    This is to match if the source has prefix like .java, and the deploy has the prefix like .class
+    This is to match if the file name of the path has a prefix like .java, and the deploy path may have the prefix like .class,
+    in this case, it should be matching.
     For example, passing
-    /home/test/src/test.java
-    will be returning
+    /home/test/src/test.java to the function
+    will return
     /home/test/src/test
     """
     if path.endswith(('.java', '.class', '.c', '.cpp' '.o', '.exe', '.py', '.pyc')):
