@@ -76,6 +76,7 @@ class MatchedResource(object):
     """
     Class to represent the matched resource information.
     """
+
     def __init__(self, path, matcher_type, confidence):
         """
         path: The path matched resource
@@ -123,7 +124,7 @@ class DeploymentAnalysis(object):
 
     def compute(self):
         """
-        Compute (or re-compute) the analysis, return and store results.
+        Compute (or re-compute) the analysis, and store results.
         """
         self.checksum_match()
         self.path_match()
@@ -135,7 +136,8 @@ class DeploymentAnalysis(object):
         for resource in self.develop_codebase.walk():
             path = resource.path
 
-            trace_resource = self.create_or_get_traceresource_by_resource(resource)
+            trace_resource = self.create_or_get_traceresource_by_resource(
+                resource)
 
             for matched_path in match_paths(path, self.deploy_paths):
                 matched_resource = MatchedResource(
@@ -147,6 +149,7 @@ class DeploymentAnalysis(object):
     def checksum_match(self):
         """
         Compare the sha1 and md5 of the develop and deploy resources, and get the matched path which has the same checksum between develop and deploy resources
+        Note that sha1 and md5 matching is not a AND condition but a OR condition, which means any of them is matched will be counted in.
         """
         deploy_checksum_map = OrderedDict()
         # The key of deploy_checksum_map dictionary key is the sha1 or md5
@@ -165,18 +168,21 @@ class DeploymentAnalysis(object):
             sha1 = resource.sha1
             md5 = resource.md5
 
-            trace_resource = self.create_or_get_traceresource_by_resource(resource)
+            trace_resource = self.create_or_get_traceresource_by_resource(
+                resource)
             # If sha1 or md5 value is found, it means the resource is matched.
-            matched_path = deploy_checksum_map.get(sha1) or deploy_checksum_map.get(md5)
+            matched_path = deploy_checksum_map.get(
+                sha1) or deploy_checksum_map.get(md5)
             if matched_path:
-                matched_resource = MatchedResource(matched_path, CHECKSUM_MATCH, EXACT_CONFIDENCE)
+                matched_resource = MatchedResource(
+                    matched_path, CHECKSUM_MATCH, EXACT_CONFIDENCE)
                 trace_resource.matched_resources.append(matched_resource)
 
             self.add_matched_resource_to_result(trace_resource)
 
     def create_or_get_traceresource_by_resource(self, resource):
         """
-         Create a TracecodeResource object based on the passing resource or return an existing one by query with the path of the resource
+         Create a TracecodeResource object based on the passing resource or return an existing one by querying with the path of the resource
         """
         path = resource.path
         if self.analysed_result.get(path):
@@ -186,10 +192,10 @@ class DeploymentAnalysis(object):
             self.analysed_result[path] = trace_resource
         return trace_resource
 
-
     def add_matched_resource_to_result(self, trace_resource):
         """
-        If the trace_resource has the matched resource, append to the result
+        Add the matched resource to the analysed_result.
+        If the trace_resource has the matched resource, append to the result stored for the class.
         """
         if trace_resource.matched_resources:
             path = trace_resource.resource.path
@@ -198,7 +204,7 @@ class DeploymentAnalysis(object):
 
 def remove_file_suffix(path):
     """
-    Remove the file prefix in the path.
+    Remove the deployment/develop file prefix in the path, for example, the develop of java is .java and the deployment is .class.
     This is to match if the file name of the path has a prefix like .java, and the deploy path may have the prefix like .class,
     in this case, it should be matching.
     For example, passing
