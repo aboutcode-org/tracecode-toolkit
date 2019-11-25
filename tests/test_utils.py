@@ -28,14 +28,16 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import unittest
+import os
 
 from commoncode.testcase import FileBasedTesting
 
 from tracecode import utils
 
 
-class TestUtils(unittest.TestCase):
+class TestUtils(FileBasedTesting):
+
+    test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
     def test_get_notice(self):
         expected  = """Generated with TraceCode and provided on an "AS IS" BASIS, WITHOUT WARRANTIES
@@ -47,3 +49,18 @@ Visit https://github.com/nexB/tracecode-toolkit/ for support and download."""
         result = utils.get_notice()
         print(result)
         assert expected == result
+
+    def test_is_json_path_with_invalid_json_file(self):
+        develop_json = self.get_test_loc('utils/invalid/deploy_notjson')
+        is_json_file = utils.is_json_path(develop_json)
+        assert is_json_file == False
+
+    def test_is_json_path_with_empty_json_file(self):
+        develop_json = self.get_test_loc('utils/empty/deploy.json')
+        is_json_file = utils.is_json_path(develop_json)
+        assert is_json_file == False
+
+    def test_is_json_path_with_valid_json_file(self):
+        develop_json = self.get_test_loc('utils/valid/deploy.json')
+        is_json_file = utils.is_json_path(develop_json)
+        assert is_json_file == True

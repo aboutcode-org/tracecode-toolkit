@@ -28,6 +28,10 @@ from __future__ import division
 
 import os
 
+import simplejson
+from commoncode import filetype
+from commoncode import fileutils
+
 
 def get_notice():
     """
@@ -47,3 +51,17 @@ def get_notice():
     notice = acknowledgment_text.strip().replace('  ', '')
 
     return notice
+
+
+def is_json_path(location):
+    """Test if the input location file is a valid json file or not.
+    """
+    if filetype.is_file(location):
+        try:
+            with open(location) as jsonfile:
+                result = simplejson.load(jsonfile)
+                if result:
+                    return True
+        except:
+            return False
+    return False

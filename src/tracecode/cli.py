@@ -29,13 +29,12 @@ from collections import OrderedDict
 
 import click
 click.disable_unicode_literals_warning = True
-from commoncode import filetype
-from commoncode import fileutils
 import simplejson
 
 from tracecode import __version__
 from tracecode import matchers
 from tracecode.utils import get_notice
+from tracecode.utils import is_json_path
 
 
 def write_json(analysis, outfile):
@@ -93,18 +92,4 @@ def cli(develop, deploy, json):
     analysis = matchers.DeploymentAnalysis(
         develop=develop, deploy=deploy, options=options)
     write_json(analysis=analysis, outfile=json)
-
-
-def is_json_path(location):
-    """Test if the input location file is a valid json file or not.
-    """
-    if filetype.is_file(location):
-        try:
-            with open(location) as jsonfile:
-                result = simplejson.load(jsonfile)
-                if result:
-                    return True
-        except:
-            return False
-    return False
 
