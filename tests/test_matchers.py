@@ -28,13 +28,20 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import os
+from collections import OrderedDict
+import json
+import os.path
+import shutil
 
+from commoncode.system import py2
+from commoncode.system import py3
+from commoncode import fileutils
 from commoncode.testcase import FileBasedTesting
 
 from tracecode.matchers import DeploymentAnalysis
 from tracecode.matchers import match_paths
 from tracecode.matchers import remove_file_suffix
+from tracecode.cli import write_json
 
 from testing_utils import check_json_scan
 
@@ -42,6 +49,36 @@ from testing_utils import check_json_scan
 class TestMatchers(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
+
+    def check_data(self, results, expected_loc, regen=False):
+        """
+        Helper to test a analysedresult object against an expected JSON file.
+        """
+        expected_loc = self.get_test_loc(expected_loc)
+
+        if regen:
+            regened_exp_loc = self.get_temp_file()
+            if py2:
+                wmode = 'wb'
+            if py3:
+                wmode = 'w'
+            with open(regened_exp_loc, wmode) as ex:
+                json.dump(results, ex, indent=2, separators=(',', ': '))
+
+            expected_dir = os.path.dirname(expected_loc)
+            if not os.path.exists(expected_dir):
+                os.makedirs(expected_dir)
+            shutil.copy(regened_exp_loc, expected_loc)
+
+        with open(expected_loc, 'rb') as ex:
+            expected = json.load(
+                ex, encoding='utf-8', object_pairs_hook=OrderedDict)
+
+        try:
+            assert expected == results
+        except AssertionError:
+            assert json.dumps(expected, indent=2) == json.dumps(
+                results, indent=2)
 
     def test_remove_file_suffix(self):
         path1 = '/home/test/src/com/nexb/plugin/ui/core.java'
@@ -82,5 +119,14 @@ class TestMatchers(FileBasedTesting):
     def test_deploymentanalysis_class(self):
         develop_json = self.get_test_loc('matchers/class/develop.json')
         deploy_json = self.get_test_loc('matchers/class/deploy.json')
-        da = DeploymentAnalysis(develop_json, deploy_json, None)
-        assert da.analysed_result is not None
+        expected_file = self.get_test_loc('matchers/class/expected.json')
+        da = DeploymentAnalysis(develop_json, deploy_json,  options=OrderedDict([
+            ('--develop', develop_json),
+            ('--deploy', deploy_json),
+        ])
+        )
+        result_file = self.get_temp_file('json')
+        with open(result_file, 'w') as rfile:
+            write_json(analysis=da, outfile=rfile)
+        check_json_scan(expected_file, result_file, regen=False)
+
