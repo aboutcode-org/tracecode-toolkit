@@ -94,4 +94,3 @@ class TestMatchers(FileBasedTesting):
         with open(result_file, 'w') as rfile:
             write_json(analysis=da, outfile=rfile)
         check_json_scan(expected_file, result_file, regen=False)
-

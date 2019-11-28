@@ -46,7 +46,8 @@ LOW_CONFIDENCE = 'low'
 
 
 class TracecodeResource(object):
-    """Wrapper class to contain resource and matched resources information.
+    """
+    Wrapper class to contain resource and matched resources information.
     """
 
     def __init__(self, resource):
@@ -54,6 +55,9 @@ class TracecodeResource(object):
         self.matched_resources = []
 
     def append_matched_resource(self, matched_resource):
+        """
+        Append the matched_resource, if the checksum result with the same path is already in the result, skip it.
+        """
         if matched_resource:
             should_appended = True
             for existing_resource in self.matched_resources:
@@ -157,7 +161,7 @@ class DeploymentAnalysis(object):
             for matched_path in match_paths(path, self.deploy_paths):
                 matched_resource = MatchedResource(
                     matched_path, PATH_MATCH, HIGH_CONFIDENCE)
-                trace_resource.matched_resources.append(matched_resource)
+                trace_resource.append_matched_resource(matched_resource)
 
             if trace_resource.matched_resources:
                 path = trace_resource.resource.path
