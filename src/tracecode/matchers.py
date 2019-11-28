@@ -61,9 +61,8 @@ class TracecodeResource(object):
         if matched_resource:
             should_appended = True
             for existing_resource in self.matched_resources:
-                if existing_resource.path == matched_resource.path:
-                    if not matched_resource.checksum_matchtype:
-                        should_appended = False
+                if existing_resource.path == matched_resource.path and matched_resource.matcher == CHECKSUM_MATCH:
+                    should_appended = False
             if should_appended:
                 self.matched_resources.append(matched_resource)
 

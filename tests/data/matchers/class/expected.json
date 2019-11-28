@@ -26,8 +26,8 @@
         },
         {
           "path": "samples/arch/zlib.tar.gz",
-          "matcher": "checksum match",
-          "confidence": "perfect"
+          "matcher": "path match",
+          "confidence": "high"
         }
       ]
     },
