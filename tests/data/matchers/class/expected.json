@@ -3,6 +3,40 @@
   "tracecode_errors": [],
   "tracecode_results": [
     {
+      "path": "samples/src/arch/zlib.tar.gz",
+      "type": "file",
+      "date": "2019-09-10",
+      "sha1": "576f0ccfe534d7f5ff5d6400078d3c6586de3abd",
+      "md5": "20b2370751abfc08bb3556c1d8114b5a",
+      "mime_type": "application/x-gzip",
+      "file_type": "gzip compressed data, last modified: Wed Jul 15 11:08:19 2015, from Unix",
+      "programming_language": null,
+      "is_binary": true,
+      "is_text": false,
+      "is_archive": true,
+      "is_media": false,
+      "is_source": false,
+      "is_script": false,
+      "scan_errors": [],
+      "deployed_to": [
+        {
+          "path": "samples/arch/zlib.tar.gz",
+          "matcher": "checksum match",
+          "confidence": "perfect"
+        },
+        {
+          "path": "samples/arch/zlib.tar.gz",
+          "matcher": "checksum match",
+          "confidence": "perfect"
+        },
+        {
+          "path": "samples/arch/zlib.tar.gz",
+          "matcher": "path match",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
       "path": "samples",
       "type": "directory",
       "date": null,
@@ -63,35 +97,6 @@
       "deployed_to": [
         {
           "path": "samples/arch",
-          "matcher": "path match",
-          "confidence": "high"
-        }
-      ]
-    },
-    {
-      "path": "samples/src/arch/zlib.tar.gz",
-      "type": "file",
-      "date": "2019-09-10",
-      "sha1": "576f0ccfe534d7f5ff5d6400078d3c6586de3abd",
-      "md5": "20b2370751abfc08bb3556c1d8114b5a",
-      "mime_type": "application/x-gzip",
-      "file_type": "gzip compressed data, last modified: Wed Jul 15 11:08:19 2015, from Unix",
-      "programming_language": null,
-      "is_binary": true,
-      "is_text": false,
-      "is_archive": true,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "deployed_to": [
-        {
-          "path": "samples/arch/zlib.tar.gz",
-          "matcher": "checksum match",
-          "confidence": "perfect"
-        },
-        {
-          "path": "samples/arch/zlib.tar.gz",
           "matcher": "path match",
           "confidence": "high"
         }

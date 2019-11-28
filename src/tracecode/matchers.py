@@ -27,15 +27,13 @@
 from __future__ import print_function
 from __future__ import absolute_import
 
-
 from collections import defaultdict
 from collections import OrderedDict
 
-from scancode.resource import Resource
 from scancode.resource import VirtualCodebase
 
 from tracecode import pathutils
-from tracecode import utils
+from future.backports.test.pystone import TRUE
 
 
 PATH_MATCH = 'path match'
@@ -55,6 +53,16 @@ class TracecodeResource(object):
         self.resource = resource
         self.matched_resources = []
 
+    def append_matched_resource(self, matched_resource):
+        if matched_resource:
+            should_appended = True
+            for existing_resource in self.matched_resources:
+                if existing_resource.path == matched_resource.path:
+                    if not matched_resource.checksum_matchtype:
+                        should_appended = False
+            if should_appended:
+                self.matched_resources.append(matched_resource)
+
     def to_dict(self):
         res = self.resource.to_dict()
         resources_result = []
@@ -72,12 +80,13 @@ class TracecodeResource(object):
         return self.to_dict()
 
 
+# TODO: use attr for these data classes
 class MatchedResource(object):
     """
     Class to represent the matched resource information.
     """
 
-    def __init__(self, path, matcher_type, confidence):
+    def __init__(self, path, matcher_type, confidence, checksum_matchtype=None):
         """
         path: The path matched resource
         matcher: Matcher method type, for example: path match or checksum match etc.
@@ -86,6 +95,7 @@ class MatchedResource(object):
         self.path = path
         self.matcher = matcher_type
         self.confidence = confidence
+        self.checksum_matchtype = checksum_matchtype
 
     def to_dict(self):
         res = OrderedDict()
@@ -118,6 +128,9 @@ class DeploymentAnalysis(object):
 
         self.options = options
         self.errors = []
+
+        # mapping of {development resource path: MatchedResource}
+        # FIXME: do we really need an OrderedDict?
         self.analysed_result = OrderedDict()
 
         self.compute()
@@ -127,6 +140,8 @@ class DeploymentAnalysis(object):
         Compute (or re-compute) the analysis, and store results.
         """
         self.checksum_match()
+        # TODO: do we really want to do a path match if we had a checksum
+        # match?
         self.path_match()
 
     def path_match(self):
@@ -144,45 +159,46 @@ class DeploymentAnalysis(object):
                     matched_path, PATH_MATCH, HIGH_CONFIDENCE)
                 trace_resource.matched_resources.append(matched_resource)
 
-            self.add_matched_resource_to_result(trace_resource)
+            if trace_resource.matched_resources:
+                path = trace_resource.resource.path
+                self.analysed_result[path] = trace_resource
 
     def checksum_match(self):
         """
-        Compare the sha1 and md5 of the develop and deploy resources, and get the matched path which has the same checksum between develop and deploy resources
-        Note that sha1 and md5 matching is not a AND condition but a OR condition, which means any of them is matched will be counted in.
+        Compare the sha1 and md5 of the develop and deploy resources, and get
+        the matched path which has the same checksum between develop and deploy
+        resources
+
+        Note that sha1 and md5 matching is not a AND condition but a OR
+        condition, which means any of them is matched will be counted in.
         """
-        deploy_checksum_map = OrderedDict()
-        # The key of deploy_checksum_map dictionary key is the sha1 or md5
-        # value, value is the path
-        for resource in self.deploy_codebase.walk():
-            path = resource.path
-            sha1 = resource.sha1
-            md5 = resource.md5
-            if sha1:
-                deploy_checksum_map[sha1] = path
-            if md5:
-                deploy_checksum_map[md5] = path
+        checksums = ['sha1',  'md5']
 
-        for resource in self.develop_codebase.walk():
-            path = resource.path
-            sha1 = resource.sha1
-            md5 = resource.md5
+        for checksumtype in checksums:
+            deployed_path_by_checksum = get_checksum_index(
+                self.deploy_codebase, checksumtype)
 
-            trace_resource = self.create_or_get_traceresource_by_resource(
-                resource)
-            # If sha1 or md5 value is found, it means the resource is matched.
-            matched_path = deploy_checksum_map.get(
-                sha1) or deploy_checksum_map.get(md5)
-            if matched_path:
+            for resource in self.develop_codebase.walk():
+                resource_checksum = getattr(resource, checksumtype)
+                if not resource_checksum:
+                    continue
+
+                trace_resource = self.create_or_get_traceresource_by_resource(
+                    resource)
+                deployed_path = deployed_path_by_checksum.get(
+                    resource_checksum)
+                if not deployed_path:
+                    continue
+
                 matched_resource = MatchedResource(
-                    matched_path, CHECKSUM_MATCH, EXACT_CONFIDENCE)
-                trace_resource.matched_resources.append(matched_resource)
-
-            self.add_matched_resource_to_result(trace_resource)
+                    deployed_path, CHECKSUM_MATCH, EXACT_CONFIDENCE, checksumtype)
+                trace_resource.append_matched_resource(matched_resource)
+                self.analysed_result[resource.path] = trace_resource
 
     def create_or_get_traceresource_by_resource(self, resource):
         """
-         Create a TracecodeResource object based on the passing resource or return an existing one by querying with the path of the resource
+         Create a TracecodeResource object based on the passing resource or
+         return an existing one by querying with the path of the resource
         """
         path = resource.path
         if self.analysed_result.get(path):
@@ -195,11 +211,31 @@ class DeploymentAnalysis(object):
     def add_matched_resource_to_result(self, trace_resource):
         """
         Add the matched resource to the analysed_result.
-        If the trace_resource has the matched resource, append to the result stored for the class.
+        If the trace_resource has the matched resource, append to the result
+        stored for the class.
         """
         if trace_resource.matched_resources:
             path = trace_resource.resource.path
             self.analysed_result[path] = trace_resource
+
+
+def get_checksum_index(codebase, checksum='sha1'):
+    """
+    Return a mapping index of {checksum: path} for a `codebase`.
+    """
+    # FIXME: what if you have multiple times the same checksum on different files?
+    # IMHO you should use a defaultdict(list) instead
+
+    # TODO: we could also handle empty SHA1... BUT that should be something
+    # dealt with by Scancode instead
+    paths_by_checksum = {}
+
+    for resource in codebase.walk():
+        resource_checksum = getattr(resource, checksum)
+        if not resource_checksum:
+            continue
+        paths_by_checksum[resource_checksum] = resource.path
+    return paths_by_checksum
 
 
 def remove_file_suffix(path):
