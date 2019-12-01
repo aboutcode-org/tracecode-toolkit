@@ -85,7 +85,7 @@ class TestCLI(FileBasedTesting):
         result = runner.invoke(cli.cli, [])
 
         assert 'Usage: cli [OPTIONS]' in result.output
-        assert 'Error: Missing option "--deploy".' in result.output
+        assert 'Error: Missing option "--develop".' in result.output
 
     def test_cli_not_existing(self):
         develop_json = 'cli/not_existing/not_existing.json'

@@ -37,7 +37,8 @@ def get_notice():
     """
     Retrieve the notice text from the NOTICE file for display in the JSON output.
     """
-    notice_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'NOTICE')
+    notice_path = os.path.join(os.path.abspath(
+        os.path.dirname(__file__)), 'NOTICE')
     notice_text = open(notice_path).read()
 
     delimiter = '\n\n\n'
@@ -54,7 +55,8 @@ def get_notice():
 
 
 def is_json_path(location):
-    """Test if the input location file is a valid json file or not.
+    """
+    Test if the input location file is a valid json file.
     """
     if filetype.is_file(location):
         try:

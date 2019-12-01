@@ -61,12 +61,12 @@ def print_version(ctx, param, value):
 
 
 @click.command()
-@click.option('--deploy', required=True, prompt=False,
-              type=click.Path(exists=True, readable=True),
-              help='Path to the "deployed" codebase scan file')
 @click.option('--develop', required=True, prompt=False,
               type=click.Path(exists=True, readable=True),
               help='Path to the "development" codebase scan file')
+@click.option('--deploy', required=True, prompt=False,
+              type=click.Path(exists=True, readable=True),
+              help='Path to the "deployed" codebase scan file')
 @click.option('-j', '--json', prompt=False, default='-',
               type=click.File(mode='wb', lazy=False),
               help='Path of the .json output file. Use "-" for on screen display.')
@@ -92,4 +92,3 @@ def cli(develop, deploy, json):
     analysis = matchers.DeploymentAnalysis(
         develop=develop, deploy=deploy, options=options)
     write_json(analysis=analysis, outfile=json)
-
