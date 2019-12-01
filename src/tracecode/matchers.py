@@ -64,12 +64,12 @@ class TracecodeResource(object):
         Append the matched_resource, if the checksum result with the same path is already in the result, skip it.
         """
         if matched_resource:
-            should_appended = True
+            should_append = True
             for existing_resource in self.deployed_resources:
                 # If the checksum is matched,  skip other types of match.
-                if existing_resource.path == matched_resource.path and matched_resource.matcher == CHECKSUM_MATCH:
-                    should_appended = False
-            if should_appended:
+                if existing_resource.path == matched_resource.path and existing_resource.matcher == CHECKSUM_MATCH:
+                    should_append = False
+            if should_append:
                 self.deployed_resources.append(matched_resource)
 
     def to_dict(self):
@@ -158,15 +158,13 @@ class DeploymentAnalysis(object):
         for develop_resource in self.develop_codebase.walk():
             develop_path = develop_resource.path
 
-            trace_resource_develop_based = self.create_or_get_traceresource_by_resource(
-                develop_resource)
-
             for matched_deploy_path in match_paths(develop_path, self.deploy_paths):
                 matched_deploy_resource = MatchedResource(
                     matched_deploy_path, PATH_MATCH, HIGH_CONFIDENCE)
+                trace_resource_develop_based = self.create_or_get_traceresource_by_resource(
+                    develop_resource)
                 trace_resource_develop_based.add_deployed_resource(
                     matched_deploy_resource)
-
                 self.analysed_result[trace_resource_develop_based.resource.path] = trace_resource_develop_based
 
     def checksum_match(self):
@@ -181,8 +179,8 @@ class DeploymentAnalysis(object):
         checksums = ['sha1',  'md5']
 
         for checksumtype in checksums:
-            deploy_path_by_checksum = get_checksum_index(
-                self.develop_codebase, checksumtype)
+            deploy_paths_by_checksum = get_checksum_index(
+                self.deploy_codebase, checksumtype)
 
             for develop_resource in self.develop_codebase.walk():
                 develop_resource_checksum = getattr(
@@ -190,19 +188,18 @@ class DeploymentAnalysis(object):
                 if not develop_resource_checksum:
                     continue
 
-                trace_resource_develop_based = self.create_or_get_traceresource_by_resource(
-                    develop_resource)
-                deploy_path = deploy_path_by_checksum.get(
+                deploy_paths = deploy_paths_by_checksum.get(
                     develop_resource_checksum)
-                if not deploy_path:
+                if not deploy_paths:
                     continue
-
-                matched_deploy_resource = MatchedResource(
-                    deploy_path, CHECKSUM_MATCH, EXACT_CONFIDENCE, checksumtype)
-                trace_resource_develop_based.add_deployed_resource(
-                    matched_deploy_resource)
-
-                self.analysed_result[develop_resource.path] = trace_resource_develop_based
+                for deploy_path in deploy_paths:
+                    matched_deploy_resource = MatchedResource(
+                        deploy_path, CHECKSUM_MATCH, EXACT_CONFIDENCE, checksumtype)
+                    trace_resource_develop_based = self.create_or_get_traceresource_by_resource(
+                        develop_resource)
+                    trace_resource_develop_based.add_deployed_resource(
+                        matched_deploy_resource)
+                    self.analysed_result[develop_resource.path] = trace_resource_develop_based
 
     def create_or_get_traceresource_by_resource(self, resource):
         """
@@ -232,9 +229,6 @@ def get_checksum_index(codebase, checksum='sha1'):
     """
     Return a mapping index of {checksum: path} for a `codebase`.
     """
-    # FIXME: what if you have multiple times the same checksum on different files?
-    # IMHO you should use a defaultdict(list) instead
-
     # TODO: we could also handle empty SHA1... BUT that should be something
     # dealt with by Scancode instead
     paths_by_checksum = {}
@@ -243,7 +237,11 @@ def get_checksum_index(codebase, checksum='sha1'):
         resource_checksum = getattr(resource, checksum)
         if not resource_checksum:
             continue
-        paths_by_checksum[resource_checksum] = resource.path
+        paths = paths_by_checksum.get(resource_checksum)
+        if paths:
+            paths_by_checksum.get(resource_checksum).append(resource.path)
+        else:
+            paths_by_checksum[resource_checksum] = [resource.path]
     return paths_by_checksum
 
 

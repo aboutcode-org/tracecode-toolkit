@@ -20,15 +20,10 @@
       "scan_errors": [],
       "deployed_to": [
         {
-          "path": "samples/src/arch/zlib.tar.gz",
+          "path": "samples/arch/zlib.tar.gz",
           "matcher": "checksum match",
           "confidence": "perfect",
           "checksum_matchtype": "sha1"
-        },
-        {
-          "path": "samples/arch/zlib.tar.gz",
-          "matcher": "path match",
-          "confidence": "high"
         }
       ]
     },
@@ -55,24 +50,6 @@
           "confidence": "high"
         }
       ]
-    },
-    {
-      "path": "samples/src",
-      "type": "directory",
-      "date": null,
-      "sha1": null,
-      "md5": null,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": null,
-      "is_text": null,
-      "is_archive": null,
-      "is_media": null,
-      "is_source": null,
-      "is_script": null,
-      "scan_errors": [],
-      "deployed_to": []
     },
     {
       "path": "samples/src/arch",
