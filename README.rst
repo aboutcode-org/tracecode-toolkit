@@ -12,7 +12,7 @@ TraceCode
 
 TraceCode is a simple command line utility to trace software components, 
 packages and files between Development/Source and Deployment/Distribution/Binaries
-codebases as they are bult, compiled and transformed.
+codebases as they are built, compiled and transformed.
 
 Support
 =======
@@ -41,7 +41,7 @@ Source code
 License
 =======
 
-* Apache-2.0 with an acknowledgement required to accompany the delta output.
+* Apache-2.0 with an acknowledgement required to accompany the tracecode output.
 
 See the NOTICE file for more details.
 
