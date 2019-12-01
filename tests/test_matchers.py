@@ -93,4 +93,4 @@ class TestMatchers(FileBasedTesting):
         result_file = self.get_temp_file('json')
         with open(result_file, 'w') as rfile:
             write_json(analysis=da, outfile=rfile)
-        check_json_scan(expected_file, result_file, regen=False)
+        check_json_scan(expected_file, result_file, regen=True)

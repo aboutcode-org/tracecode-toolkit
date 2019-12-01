@@ -30,6 +30,9 @@ from __future__ import absolute_import
 from collections import defaultdict
 from collections import OrderedDict
 
+import attr
+
+from commoncode.datautils import String
 from scancode.resource import VirtualCodebase
 
 from tracecode import pathutils
@@ -83,28 +86,26 @@ class TracecodeResource(object):
         return self.to_dict()
 
 
-# TODO: use attr for these data classes
+@attr.s(slots=True)
 class MatchedResource(object):
     """
     Class to represent the matched resource information.
     """
-
-    def __init__(self, path, matcher_type, confidence, checksum_matchtype=None):
-        """
-        path: The path matched resource
-        matcher: Matcher method type, for example: path match or checksum match etc.
-        confident: Match level, for example: high, medium etc.
-        """
-        self.path = path
-        self.matcher = matcher_type
-        self.confidence = confidence
-        self.checksum_matchtype = checksum_matchtype
+    path = String(help='The path matched resource')
+    matcher = String(
+        help='Matcher method type, for example: path match or checksum match etc.')
+    confidence = String(
+        help='Match level, for example: high, medium etc.')
+    checksum_matchtype = String(
+        default=None, help='Checksum type such as sha1, md5 etc.')
 
     def to_dict(self):
         res = OrderedDict()
         res['path'] = self.path
         res['matcher'] = self.matcher
         res['confidence'] = self.confidence
+        if self.checksum_matchtype:
+            res['checksum_matchtype'] = self.checksum_matchtype
         return res
 
 

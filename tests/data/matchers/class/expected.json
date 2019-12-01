@@ -22,7 +22,8 @@
         {
           "path": "samples/arch/zlib.tar.gz",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/arch/zlib.tar.gz",

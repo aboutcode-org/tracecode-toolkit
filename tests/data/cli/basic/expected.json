@@ -22,7 +22,8 @@
         {
           "path": "samples/README",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/README",
@@ -51,7 +52,8 @@
         {
           "path": "samples/screenshot.png",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/screenshot.png",
@@ -80,7 +82,8 @@
         {
           "path": "samples/arch/zlib.tar.gz",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/arch/zlib.tar.gz",
@@ -109,7 +112,8 @@
         {
           "path": "samples/JGroups/EULA",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/EULA",
@@ -138,7 +142,8 @@
         {
           "path": "samples/JGroups/LICENSE",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/LICENSE",
@@ -167,7 +172,8 @@
         {
           "path": "samples/JGroups/licenses/apache-1.1.txt",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/licenses/apache-1.1.txt",
@@ -196,7 +202,8 @@
         {
           "path": "samples/JGroups/licenses/apache-2.0.txt",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/licenses/apache-2.0.txt",
@@ -225,7 +232,8 @@
         {
           "path": "samples/JGroups/licenses/bouncycastle.txt",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/licenses/bouncycastle.txt",
@@ -254,7 +262,8 @@
         {
           "path": "samples/JGroups/licenses/cpl-1.0.txt",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/licenses/cpl-1.0.txt",
@@ -283,7 +292,8 @@
         {
           "path": "samples/JGroups/licenses/lgpl.txt",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/licenses/lgpl.txt",
@@ -312,7 +322,8 @@
         {
           "path": "samples/JGroups/src/FixedMembershipToken.java",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/src/FixedMembershipToken.java",
@@ -341,7 +352,8 @@
         {
           "path": "samples/JGroups/src/GuardedBy.java",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/src/GuardedBy.java",
@@ -370,7 +382,8 @@
         {
           "path": "samples/JGroups/src/ImmutableReference.java",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/src/ImmutableReference.java",
@@ -399,7 +412,8 @@
         {
           "path": "samples/JGroups/src/RATE_LIMITER.java",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/src/RATE_LIMITER.java",
@@ -428,7 +442,8 @@
         {
           "path": "samples/JGroups/src/RouterStub.java",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/src/RouterStub.java",
@@ -457,7 +472,8 @@
         {
           "path": "samples/JGroups/src/RouterStubManager.java",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/src/RouterStubManager.java",
@@ -486,7 +502,8 @@
         {
           "path": "samples/JGroups/src/S3_PING.java",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/JGroups/src/S3_PING.java",
@@ -515,7 +532,8 @@
         {
           "path": "samples/zlib/adler32.c",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/adler32.c",
@@ -544,7 +562,8 @@
         {
           "path": "samples/zlib/deflate.c",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/deflate.c",
@@ -573,7 +592,8 @@
         {
           "path": "samples/zlib/deflate.h",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/deflate.h",
@@ -602,7 +622,8 @@
         {
           "path": "samples/zlib/zlib.h",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/zlib.h",
@@ -631,7 +652,8 @@
         {
           "path": "samples/zlib/zutil.c",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/zutil.c",
@@ -660,7 +682,8 @@
         {
           "path": "samples/zlib/zutil.h",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/zutil.h",
@@ -689,7 +712,8 @@
         {
           "path": "samples/zlib/ada/zlib.ads",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/ada/zlib.ads",
@@ -718,7 +742,8 @@
         {
           "path": "samples/zlib/dotzlib/AssemblyInfo.cs",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/dotzlib/AssemblyInfo.cs",
@@ -747,7 +772,8 @@
         {
           "path": "samples/zlib/dotzlib/ChecksumImpl.cs",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/dotzlib/ChecksumImpl.cs",
@@ -776,7 +802,8 @@
         {
           "path": "samples/zlib/dotzlib/LICENSE_1_0.txt",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/dotzlib/LICENSE_1_0.txt",
@@ -805,7 +832,8 @@
         {
           "path": "samples/zlib/dotzlib/readme.txt",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/dotzlib/readme.txt",
@@ -834,7 +862,8 @@
         {
           "path": "samples/zlib/gcc_gvmat64/gvmat64.S",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/gcc_gvmat64/gvmat64.S",
@@ -863,7 +892,8 @@
         {
           "path": "samples/zlib/infback9/infback9.c",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/infback9/infback9.c",
@@ -892,7 +922,8 @@
         {
           "path": "samples/zlib/infback9/infback9.h",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/infback9/infback9.h",
@@ -921,7 +952,8 @@
         {
           "path": "samples/zlib/iostream2/zstream.h",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/iostream2/zstream.h",
@@ -950,7 +982,8 @@
         {
           "path": "samples/zlib/iostream2/zstream_test.cpp",
           "matcher": "checksum match",
-          "confidence": "perfect"
+          "confidence": "perfect",
+          "checksum_matchtype": "sha1"
         },
         {
           "path": "samples/zlib/iostream2/zstream_test.cpp",

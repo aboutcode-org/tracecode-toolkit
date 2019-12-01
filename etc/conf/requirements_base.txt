@@ -1,4 +1,5 @@
 # Base configuration tools
+attrs
 certifi
 setuptools
 wheel
