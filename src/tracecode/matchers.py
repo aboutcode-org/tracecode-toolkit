@@ -54,28 +54,30 @@ class TracecodeResource(object):
     """
 
     def __init__(self, resource):
+        # The develop resource
         self.resource = resource
-        self.matched_resources = []
+        # The targeted deployed resources
+        self.deployed_resources = []
 
-    def append_matched_resource(self, matched_resource):
+    def add_deployed_resource(self, matched_resource):
         """
         Append the matched_resource, if the checksum result with the same path is already in the result, skip it.
         """
         if matched_resource:
             should_appended = True
-            for existing_resource in self.matched_resources:
+            for existing_resource in self.deployed_resources:
                 # If the checksum is matched,  skip other types of match.
                 if existing_resource.path == matched_resource.path and matched_resource.matcher == CHECKSUM_MATCH:
                     should_appended = False
             if should_appended:
-                self.matched_resources.append(matched_resource)
+                self.deployed_resources.append(matched_resource)
 
     def to_dict(self):
         res = self.resource.to_dict()
         resources_result = []
-        if self.matched_resources:
-            for resource in self.matched_resources:
-                resources_result.append(resource.to_dict())
+        if self.deployed_resources:
+            for deployed_resource in self.deployed_resources:
+                resources_result.append(deployed_resource.to_dict())
         res['deployed_to'] = resources_result
         return res
 
@@ -162,7 +164,7 @@ class DeploymentAnalysis(object):
             for matched_deploy_path in match_paths(develop_path, self.deploy_paths):
                 matched_deploy_resource = MatchedResource(
                     matched_deploy_path, PATH_MATCH, HIGH_CONFIDENCE)
-                trace_resource_develop_based.append_matched_resource(
+                trace_resource_develop_based.add_deployed_resource(
                     matched_deploy_resource)
 
                 self.analysed_result[trace_resource_develop_based.resource.path] = trace_resource_develop_based
@@ -197,7 +199,7 @@ class DeploymentAnalysis(object):
 
                 matched_deploy_resource = MatchedResource(
                     deploy_path, CHECKSUM_MATCH, EXACT_CONFIDENCE, checksumtype)
-                trace_resource_develop_based.append_matched_resource(
+                trace_resource_develop_based.add_deployed_resource(
                     matched_deploy_resource)
 
                 self.analysed_result[develop_resource.path] = trace_resource_develop_based
@@ -221,7 +223,7 @@ class DeploymentAnalysis(object):
         If the trace_resource has the matched resource, append to the result
         stored for the class.
         """
-        if trace_resource.matched_resources:
+        if trace_resource.deployed_resources:
             path = trace_resource.resource.path
             self.analysed_result[path] = trace_resource
 
