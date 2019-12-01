@@ -20,7 +20,7 @@
       "scan_errors": [],
       "deployed_to": [
         {
-          "path": "samples/arch/zlib.tar.gz",
+          "path": "samples/src/arch/zlib.tar.gz",
           "matcher": "checksum match",
           "confidence": "perfect",
           "checksum_matchtype": "sha1"

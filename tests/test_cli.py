@@ -64,7 +64,7 @@ class TestCLI(FileBasedTesting):
                 deploy_json, '-j', result_file]
         run_scan_click(args)
 
-        check_json_scan(expected_json, result_file, regen=True)
+        check_json_scan(expected_json, result_file, regen=False)
 
     def test_help(self):
         runner = CliRunner()

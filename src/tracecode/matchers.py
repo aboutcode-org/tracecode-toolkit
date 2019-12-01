@@ -64,6 +64,7 @@ class TracecodeResource(object):
         if matched_resource:
             should_appended = True
             for existing_resource in self.matched_resources:
+                # If the checksum is matched,  skip other types of match.
                 if existing_resource.path == matched_resource.path and matched_resource.matcher == CHECKSUM_MATCH:
                     should_appended = False
             if should_appended:
@@ -144,28 +145,27 @@ class DeploymentAnalysis(object):
         Compute (or re-compute) the analysis, and store results.
         """
         self.checksum_match()
-        # TODO: do we really want to do a path match if we had a checksum
-        # match?
+        # The path match should be after checksum match, since if checksum is
+        # matched, the result of path match will be ignored
         self.path_match()
 
     def path_match(self):
         """
         Path matching for the develop and deploy resources.
         """
-        for resource in self.develop_codebase.walk():
-            path = resource.path
+        for develop_resource in self.develop_codebase.walk():
+            develop_path = develop_resource.path
 
-            trace_resource = self.create_or_get_traceresource_by_resource(
-                resource)
+            trace_resource_develop_based = self.create_or_get_traceresource_by_resource(
+                develop_resource)
 
-            for matched_path in match_paths(path, self.deploy_paths):
-                matched_resource = MatchedResource(
-                    matched_path, PATH_MATCH, HIGH_CONFIDENCE)
-                trace_resource.append_matched_resource(matched_resource)
+            for matched_deploy_path in match_paths(develop_path, self.deploy_paths):
+                matched_deploy_resource = MatchedResource(
+                    matched_deploy_path, PATH_MATCH, HIGH_CONFIDENCE)
+                trace_resource_develop_based.append_matched_resource(
+                    matched_deploy_resource)
 
-            if trace_resource.matched_resources:
-                path = trace_resource.resource.path
-                self.analysed_result[path] = trace_resource
+                self.analysed_result[trace_resource_develop_based.resource.path] = trace_resource_develop_based
 
     def checksum_match(self):
         """
@@ -179,25 +179,28 @@ class DeploymentAnalysis(object):
         checksums = ['sha1',  'md5']
 
         for checksumtype in checksums:
-            deployed_path_by_checksum = get_checksum_index(
-                self.deploy_codebase, checksumtype)
+            deploy_path_by_checksum = get_checksum_index(
+                self.develop_codebase, checksumtype)
 
-            for resource in self.develop_codebase.walk():
-                resource_checksum = getattr(resource, checksumtype)
-                if not resource_checksum:
+            for develop_resource in self.develop_codebase.walk():
+                develop_resource_checksum = getattr(
+                    develop_resource, checksumtype)
+                if not develop_resource_checksum:
                     continue
 
-                trace_resource = self.create_or_get_traceresource_by_resource(
-                    resource)
-                deployed_path = deployed_path_by_checksum.get(
-                    resource_checksum)
-                if not deployed_path:
+                trace_resource_develop_based = self.create_or_get_traceresource_by_resource(
+                    develop_resource)
+                deploy_path = deploy_path_by_checksum.get(
+                    develop_resource_checksum)
+                if not deploy_path:
                     continue
 
-                matched_resource = MatchedResource(
-                    deployed_path, CHECKSUM_MATCH, EXACT_CONFIDENCE, checksumtype)
-                trace_resource.append_matched_resource(matched_resource)
-                self.analysed_result[resource.path] = trace_resource
+                matched_deploy_resource = MatchedResource(
+                    deploy_path, CHECKSUM_MATCH, EXACT_CONFIDENCE, checksumtype)
+                trace_resource_develop_based.append_matched_resource(
+                    matched_deploy_resource)
+
+                self.analysed_result[develop_resource.path] = trace_resource_develop_based
 
     def create_or_get_traceresource_by_resource(self, resource):
         """
