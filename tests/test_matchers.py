@@ -31,13 +31,15 @@ from __future__ import unicode_literals
 from collections import OrderedDict
 import os.path
 
-from commoncode.testcase import FileBasedTesting
+from scancode.resource import VirtualCodebase
 
+from tracecode.cli import write_json
 from tracecode.matchers import DeploymentAnalysis
+from tracecode.matchers import get_checksum_index
 from tracecode.matchers import match_paths
 from tracecode.matchers import remove_file_suffix
-from tracecode.cli import write_json
 
+from commoncode.testcase import FileBasedTesting
 from testing_utils import check_json_scan
 
 
@@ -80,6 +82,23 @@ class TestMatchers(FileBasedTesting):
         expected = [u'com/nexb/plugin/ui/readme']
         result = match_paths(path1, path2)
         assert list(result) == expected
+
+    def test_get_checksum_index_sha1(self):
+        develop_json = self.get_test_loc('matchers/checksumindex/develop.json')
+        codebase = VirtualCodebase(develop_json)
+        result = get_checksum_index(codebase)
+        expected = {u'01ff4b1de0bc6c75c9cca6e46c80c1802d6976d4': [u'samples/screenshot.png'],
+                    u'2e07e32c52d607204fad196052d70e3d18fb8636': [u'samples/README']
+                    }
+        assert expected == result
+
+    def test_get_checksum_index_sha1(self):
+        develop_json = self.get_test_loc('matchers/checksumindex/develop.json')
+        codebase = VirtualCodebase(develop_json)
+        result = get_checksum_index(codebase, 'md5')
+        expected = {u'b6ef5a90777147423c98b42a6a25e57a': [u'samples/screenshot.png'],
+                    u'effc6856ef85a9250fb1a470792b3f38': [u'samples/README']}
+        assert expected == result
 
     def test_deploymentanalysis_class(self):
         develop_json = self.get_test_loc('matchers/class/develop.json')
