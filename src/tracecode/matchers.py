@@ -31,12 +31,10 @@ from collections import defaultdict
 from collections import OrderedDict
 
 import attr
-
 from commoncode.datautils import String
 from scancode.resource import VirtualCodebase
 
 from tracecode import pathutils
-from future.backports.test.pystone import TRUE
 
 
 PATH_MATCH = 'path match'
