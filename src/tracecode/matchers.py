@@ -125,13 +125,11 @@ class DeploymentAnalysis(object):
         self.develop_codebase = VirtualCodebase(self.develop)
         self.deploy_codebase = VirtualCodebase(self.deploy)
 
-        self.deploy_paths = []
-        for resource in self.deploy_codebase.walk():
-            self.deploy_paths.append(resource.path)
+        self.deploy_paths = [
+            resource.path for resource in self.deploy_codebase.walk()]
 
-        self.develop_paths = []
-        for resource in self.develop_codebase.walk():
-            self.develop_paths.append(resource.path)
+        self.develop_paths = [
+            resource.path for resource in self.develop_codebase.walk()]
 
         self.options = options
         self.errors = []
@@ -191,7 +189,8 @@ class DeploymentAnalysis(object):
                 deploy_paths = deploy_paths_by_checksum.get(
                     develop_resource_checksum)
                 if not deploy_paths:
-                    continue
+                    continue   # If the checksum is not found in the index, skip
+
                 for deploy_path in deploy_paths:
                     matched_deploy_resource = MatchedResource(
                         deploy_path, CHECKSUM_MATCH, EXACT_CONFIDENCE, checksumtype)
@@ -221,13 +220,12 @@ class DeploymentAnalysis(object):
         stored for the class.
         """
         if trace_resource.deployed_resources:
-            path = trace_resource.resource.path
-            self.analysed_result[path] = trace_resource
+            self.analysed_result[trace_resource.resource.path] = trace_resource
 
 
 def get_checksum_index(codebase, checksum='sha1'):
     """
-    Return a mapping index of {checksum: path} for a `codebase`.
+    Return a mapping index of {checksum: [path,...]} for a `codebase`.
     """
     # TODO: we could also handle empty SHA1... BUT that should be something
     # dealt with by Scancode instead
