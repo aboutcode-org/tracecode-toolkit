@@ -118,9 +118,9 @@ class DeploymentAnalysis(object):
 
     def __init__(self, develop_json_location, deploy_json_location,  options):
         """
-        develop_json_location: The json location of the develop resources
+        develop_json_location: The json location of the develop resources.
         deploy_json_location: The json location of the deploy resources.
-        options: The cli option
+        options: The cli options.
         """
         self.develop = develop_json_location
         self.deploy = deploy_json_location
@@ -171,8 +171,8 @@ class DeploymentAnalysis(object):
     def checksum_match(self):
         """
         Compare the sha1 and md5 of the develop and deploy resources, and get
-        the matched path which has the same checksum between develop and deploy
-        resources
+        the matched paths list which has the same checksum between develop and deploy
+        resources, using the paths list, create matched resource and add it the result.
         """
         checksums = ['sha1',  'md5']
 
