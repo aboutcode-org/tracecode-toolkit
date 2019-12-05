@@ -166,7 +166,6 @@ class DeploymentAnalysis(object):
                     develop_resource)
                 trace_resource_develop_based.add_deployed_resource(
                     matched_deploy_resource)
-                self.analysed_result[trace_resource_develop_based.resource.path] = trace_resource_develop_based
 
     def checksum_match(self):
         """
@@ -198,7 +197,6 @@ class DeploymentAnalysis(object):
                         develop_resource)
                     trace_resource_develop_based.add_deployed_resource(
                         matched_deploy_resource)
-                    self.analysed_result[develop_resource.path] = trace_resource_develop_based
 
     def create_or_get_traceresource_by_resource(self, resource):
         """
