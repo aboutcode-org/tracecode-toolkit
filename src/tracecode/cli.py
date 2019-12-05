@@ -90,5 +90,5 @@ def cli(develop, deploy, json):
         return
 
     analysis = matchers.DeploymentAnalysis(
-        develop=develop, deploy=deploy, options=options)
+        develop_json_location=develop, deploy_json_location=deploy, options=options)
     write_json(analysis=analysis, outfile=json)

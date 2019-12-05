@@ -116,9 +116,14 @@ class DeploymentAnalysis(object):
     how files on each side are related using various matching strategies.
     """
 
-    def __init__(self, develop, deploy,  options):
-        self.develop = develop
-        self.deploy = deploy
+    def __init__(self, develop_json_location, deploy_json_location,  options):
+        """
+        develop_json_location: The json location of the develop resources
+        deploy_json_location: The json location of the deploy resources.
+        options: The cli option
+        """
+        self.develop = develop_json_location
+        self.deploy = deploy_json_location
 
         self.develop_codebase = VirtualCodebase(self.develop)
         self.deploy_codebase = VirtualCodebase(self.deploy)
@@ -168,9 +173,6 @@ class DeploymentAnalysis(object):
         Compare the sha1 and md5 of the develop and deploy resources, and get
         the matched path which has the same checksum between develop and deploy
         resources
-
-        Note that sha1 and md5 matching is not a AND condition but a OR
-        condition, which means any of them is matched will be counted in.
         """
         checksums = ['sha1',  'md5']
 
