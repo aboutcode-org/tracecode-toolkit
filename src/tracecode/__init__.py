@@ -33,3 +33,5 @@ except DistributionNotFound:
     # package is not installed ??
     __version__ = '1.0.0'
 
+from tracecode import matchers
+from tracecode import utils

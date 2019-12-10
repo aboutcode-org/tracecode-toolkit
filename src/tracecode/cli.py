@@ -28,26 +28,27 @@ from __future__ import absolute_import
 from collections import OrderedDict
 
 import click
+click.disable_unicode_literals_warning = True
 import simplejson
 
 from tracecode import __version__
+from tracecode import matchers
+from tracecode.utils import get_notice
+from tracecode.utils import is_json_path
 
 
-def write_json(tracecode, outfile, all_delta_types=False):
+def write_json(analysis, outfile):
     """
-    Using the TraceCode object, create a .json file containing the primary
-    information from the Delta objects.  Through a call to utils.deltas(), omit
-    all unmodified Delta objects -- identified by a 'score' of 0 -- unless the
-    user selects the '-a'/'--all-delta-types' option.
+    Write the data from the `analysis` DeploymentAnalysis as JSON to `outfile`.
     """
     results = OrderedDict([
         ('tracecode_notice', get_notice()),
-        ('tracecode_options', tracecode.options),
+        ('tracecode_options', analysis.options),
         ('tracecode_version', __version__),
-        ('tracecode_errors',[]),
+        ('tracecode_errors', analysis.errors),
+        ('tracecode_results', analysis.analysed_result.values()),
     ])
 
-    # TODO: add toggle for pretty printing
     simplejson.dump(results, outfile, iterable_as_array=True, indent=2)
     outfile.write('\n')
 
@@ -60,20 +61,34 @@ def print_version(ctx, param, value):
 
 
 @click.command()
-@click.option('--deploy', 
-    required=True, prompt=False, type=click.Path(exists=True, readable=True), 
-    help='Identify the path to the "deployed" codebase scan file')
-@click.option('--devel', 
-    required=True, prompt=False, type=click.Path(exists=True, readable=True), 
-    help='Path to the "development" codebase scan file')
-@click.option('-j', '--json', 
-    prompt=False, default='-', type=click.File(mode='wb', lazy=False), 
-    help='Path to the .json output file. Use "-" for on screen display.')
+@click.option('--develop', required=True, prompt=False,
+              type=click.Path(exists=True, readable=True),
+              help='Path to the "development" codebase scan file')
+@click.option('--deploy', required=True, prompt=False,
+              type=click.Path(exists=True, readable=True),
+              help='Path to the "deployed" codebase scan file')
+@click.option('-j', '--json', prompt=False, default='-',
+              type=click.File(mode='wb', lazy=False),
+              help='Path of the .json output file. Use "-" for on screen display.')
 @click.help_option('-h', '--help')
-@click.option('--version', is_flag=True, is_eager=True, expose_value=False, 
-    callback=print_version, help='Show the version and exit.')
-def cli(new, old, json_file):
+@click.option('--version', is_flag=True, is_eager=True, expose_value=False, callback=print_version, help='Show the version and exit.')
+def cli(develop, deploy, json):
     """
-    lorem ipsum...
+    Command to accept location of deploy and develop json inputs, run the
+    tracecode scan and return the expected same paths set by comparison of paths.
     """
-    pass
+    options = OrderedDict([
+        ('--develop', develop),
+        ('--deploy', deploy),
+    ])
+
+    if not is_json_path(develop):
+        click.echo('Develop path is not a json file:' + develop)
+        return
+    if not is_json_path(deploy):
+        click.echo('Deploy path is not a json file: ' + deploy)
+        return
+
+    analysis = matchers.DeploymentAnalysis(
+        develop_json_location=develop, deploy_json_location=deploy, options=options)
+    write_json(analysis=analysis, outfile=json)

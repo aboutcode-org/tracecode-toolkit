@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
+# Copyright (c) nexB Inc. and others. All rights reserved.
 # http://nexb.com and https://github.com/nexB/tracecode-toolkit/
 # The TraceCode software is licensed under the Apache License version 2.0.
 # Data generated with TraceCode require an acknowledgment.
@@ -23,22 +23,87 @@
 #  Visit https://github.com/nexB/tracecode-toolkit/ for support and download.
 #
 
-from __future__ import absolute_import, print_function, unicode_literals, division
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 
-import codecs
-from collections import OrderedDict
-import json
 import os
 
 from click.testing import CliRunner
-import unicodecsv
 
 from commoncode.testcase import FileBasedTesting
+from testing_utils import check_json_scan
+from testing_utils import run_scan_click
+
+from tracecode import cli
 
 
 class TestCLI(FileBasedTesting):
 
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
-    def test_cli(self):
-        pass
+    def test_cli_with_empty_json(self):
+        develop_json = self.get_test_loc('cli/empty/develop.json')
+        deploy_json = self.get_test_loc('cli/empty/deploy.json')
+        result_file = self.get_temp_file('json')
+        args = ['--develop', develop_json, '--deploy',
+                deploy_json, '-j', result_file]
+        result = run_scan_click(args)
+        expected = 'Develop path is not a json file:'
+        assert expected in result.output
+
+    def test_cli_with_regular_json(self):
+        develop_json = self.get_test_loc('cli/basic/develop.json')
+        deploy_json = self.get_test_loc('cli/basic/deploy.json')
+        expected_json = self.get_test_loc('cli/basic/expected.json')
+
+        result_file = self.get_temp_file('json')
+
+        args = ['--develop', develop_json, '--deploy',
+                deploy_json, '-j', result_file]
+        run_scan_click(args)
+
+        check_json_scan(expected_json, result_file, regen=False)
+
+    def test_help(self):
+        runner = CliRunner()
+        result = runner.invoke(cli.cli, ['--help'])
+
+        assert 'Usage: cli [OPTIONS]' in result.output
+        assert 'Command to accept location of deploy and develop json' in result.output
+        assert '--version' in result.output
+
+    def test_version(self):
+        runner = CliRunner()
+        result = runner.invoke(cli.cli, ['--version'])
+
+        assert 'TraceCode version 1.0.0' in result.output
+
+    def test_empty(self):
+        runner = CliRunner()
+        result = runner.invoke(cli.cli, [])
+
+        assert 'Usage: cli [OPTIONS]' in result.output
+        assert 'Error: Missing option "--develop".' in result.output
+
+    def test_cli_not_existing(self):
+        develop_json = 'cli/not_existing/not_existing.json'
+        deploy_json = 'cli/not_existing/not_existing.json'
+        result_file = self.get_temp_file('json')
+
+        args = ['--develop', develop_json, '--deploy',
+                deploy_json,  '-j', result_file]
+        result = run_scan_click(args, expected_rc=2)
+        expected = 'Error: Invalid value for "--develop": Path "cli/not_existing/not_existing.json" does not exist.'
+        assert expected in result.output
+
+    def test_cli_with_invalid_json_file(self):
+        develop_json = self.get_test_loc('cli/invalid/develop.json')
+        deploy_json = self.get_test_loc('cli/invalid/deploy_notjson')
+        result_file = self.get_temp_file('json')
+
+        args = ['--develop', develop_json, '--deploy',
+                deploy_json, '-j', result_file]
+        result = run_scan_click(args)
+        assert 'Deploy path is not a json file:' in result.output

@@ -1,10 +1,16 @@
 # Base configuration tools
+attrs
 certifi
 setuptools
 wheel
 pip
 wincertstore
 six
+
+docopt
+
+# Graphing
+altgraph
 
 # Self
 -e .

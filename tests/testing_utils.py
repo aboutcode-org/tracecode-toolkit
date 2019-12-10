@@ -29,7 +29,6 @@ from __future__ import division
 from __future__ import unicode_literals
 
 from collections import OrderedDict
-
 import io
 import json
 
@@ -50,7 +49,7 @@ def run_scan_click(options, monkeypatch=None, test_mode=True, expected_rc=0, env
 
     if monkeypatch:
         monkeypatch.setattr(click._termui_impl, 'isatty', lambda _: True)
-        monkeypatch.setattr(click , 'get_terminal_size', lambda : (80, 43,))
+        monkeypatch.setattr(click, 'get_terminal_size', lambda: (80, 43,))
     runner = CliRunner()
 
     result = runner.invoke(cli.cli, options, catch_exceptions=False, env=env)
@@ -85,7 +84,8 @@ def add_windows_extra_timeout(options, timeout=WINDOWS_CI_TIMEOUT):
     Add a timeout to an options list if on Windows.
     """
     if on_windows and '--timeout' not in options:
-        # somehow the Appevyor windows CI is now much slower and timeouts at 120 secs
+        # somehow the Appevyor windows CI is now much slower and timeouts at
+        # 120 secs
         options += ['--timeout', timeout]
     return options
 
@@ -115,8 +115,10 @@ def check_json_scan(expected_file, result_file, regen=False, remove_file_date=Fa
     # NOTE we redump the JSON as a string for a more efficient display of the
     # failures comparison/diff
     # TODO: remove sort, this should no longer be needed
-    expected = json.dumps(expected, indent=2, sort_keys=True, separators=(',', ': '))
-    results = json.dumps(results, indent=2, sort_keys=True, separators=(',', ': '))
+    expected = json.dumps(
+        expected, indent=2, sort_keys=True, separators=(',', ': '))
+    results = json.dumps(
+        results, indent=2, sort_keys=True, separators=(',', ': '))
     assert expected == results
 
 
@@ -143,8 +145,6 @@ def load_json_result_from_string(string, remove_file_date=False):
     # clean new headers attributes
     streamline_headers(scan_results)
 
-    scan_results['deltas'].sort(key=lambda  x: x['factors'], reverse=False)
-    scan_results['deltas'].sort(key=lambda x: x['score'], reverse=True)
     return scan_results
 
 
