@@ -1,3 +1,4 @@
+
 language: python
 
 python:
@@ -51,7 +52,7 @@ script:
 notifications:
   irc:
     channels:
-      - "chat.freenode.net#aboutcode"
+      - "libera.chat #aboutcode"
   on_sucess: change
   on_failure: always
   use_notice: true
