@@ -1,3 +1,4 @@
+
 ============
 Contributing
 ============
@@ -48,9 +49,9 @@ For other questions, discussions, and chats, we have:
   Gitter also has an IRC bridge at https://irc.gitter.im/
   This is the main place where we chat and meet.
 
-- an official #aboutcode IRC channel on freenode (server chat.freenode.net)
+- an official #aboutcode IRC channel on Libera.chat (server libera.chat)
   for TraceCode and other related tools. You can use your
-  favorite IRC client or use the web chat at https://webchat.freenode.net/ .
+  favorite IRC client or use the web chat at https://web.libera.chat/ .
   This is a busy place with a lot of CI and commit notifications that makes
   actual chat sometimes difficult!
 
