@@ -2,7 +2,7 @@ Software license
 ================
 
 Copyright (c) 2017-2018 nexB Inc. and others. All rights reserved.
-http://nexb.com and https://github.com/nexB/tracecode-toolkit/
+http://nexb.com and https://github.com/aboutcode-org/tracecode-toolkit/
 The TraceCode software is licensed under the Apache License version 2.0.
 Data generated with TraceCode require an acknowledgment.
 TraceCode is a trademark of nexB Inc.
@@ -22,7 +22,7 @@ derivative work, you must accompany this data with the following acknowledgment:
   TraceCode should be considered or used as legal advice. Consult an Attorney
   for any legal advice.
   TraceCode is a free software codebase-comparison tool from nexB Inc. and others.
-  Visit https://github.com/nexB/tracecode-toolkit/ for support and download.
+  Visit https://github.com/aboutcode-org/tracecode-toolkit/ for support and download.
 
 
 Third-party software licenses
@@ -35,8 +35,8 @@ documented by .ABOUT files.
 
 The corresponding source code for pre-compiled third-party software is available
 for immediate download from the same release page where you obtained TraceCode at:
-https://github.com/nexB/tracecode-toolkit/
-or https://github.com/nexB/scancode-thirdparty-src/
+https://github.com/aboutcode-org/tracecode-toolkit/
+or https://github.com/aboutcode-org/scancode-thirdparty-src/
 
 You may also contact us to request the source code by email at info@nexb.com or
 by postal mail at:

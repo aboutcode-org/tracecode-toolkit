@@ -1,74 +1,71 @@
 {
-  "headers": [
-    {
-      "tool_name": "scancode-toolkit",
-      "tool_version": "3.1.2",
-      "options": {
-        "input": [
-          "samples"
-        ],
-        "--info": true,
-        "--json-pp": "samples.json"
-      },
-      "notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/nexB/scancode-toolkit/ for support and download.",
-      "start_timestamp": "2019-11-06T104929.341184",
-      "end_timestamp": "2019-11-06T104929.978208",
-      "message": null,
-      "errors": [],
-      "extra_data": {
-        "files_count": 33
-      }
-    }
-  ],
-  "files": [
-    {
-      "path": "samples/README",
-      "type": "file",
-      "name": "README",
-      "base_name": "README",
-      "extension": "",
-      "size": 236,
-      "date": "2019-09-10",
-      "sha1": "2e07e32c52d607204fad196052d70e3d18fb8636",
-      "md5": "effc6856ef85a9250fb1a470792b3f38",
-      "mime_type": "text/plain",
-      "file_type": "ASCII text",
-      "programming_language": null,
-      "is_binary": false,
-      "is_text": true,
-      "is_archive": false,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "files_count": 0,
-      "dirs_count": 0,
-      "size_count": 0,
-      "scan_errors": []
-    },
-    {
-      "path": "samples/screenshot.png",
-      "type": "file",
-      "name": "screenshot.png",
-      "base_name": "screenshot",
-      "extension": ".png",
-      "size": 622754,
-      "date": "2019-09-10",
-      "sha1": "01ff4b1de0bc6c75c9cca6e46c80c1802d6976d4",
-      "md5": "b6ef5a90777147423c98b42a6a25e57a",
-      "mime_type": "image/png",
-      "file_type": "PNG image data, 2880 x 1666, 8-bit/color RGB, non-interlaced",
-      "programming_language": null,
-      "is_binary": true,
-      "is_text": false,
-      "is_archive": false,
-      "is_media": true,
-      "is_source": false,
-      "is_script": false,
-      "files_count": 0,
-      "dirs_count": 0,
-      "size_count": 0,
-      "scan_errors": []
-    }
-   
-  ]
+    "headers": [
+        {
+            "tool_name": "scancode-toolkit",
+            "tool_version": "3.1.2",
+            "options": {
+                "input": ["samples"],
+                "--info": true,
+                "--json-pp": "samples.json"
+            },
+            "notice": "Generated with ScanCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nScanCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nScanCode is a free software code scanning tool from nexB Inc. and others.\nVisit https://github.com/aboutcode-org/scancode-toolkit/ for support and download.",
+            "start_timestamp": "2019-11-06T104929.341184",
+            "end_timestamp": "2019-11-06T104929.978208",
+            "message": null,
+            "errors": [],
+            "extra_data": {
+                "files_count": 33
+            }
+        }
+    ],
+    "files": [
+        {
+            "path": "samples/README",
+            "type": "file",
+            "name": "README",
+            "base_name": "README",
+            "extension": "",
+            "size": 236,
+            "date": "2019-09-10",
+            "sha1": "2e07e32c52d607204fad196052d70e3d18fb8636",
+            "md5": "effc6856ef85a9250fb1a470792b3f38",
+            "mime_type": "text/plain",
+            "file_type": "ASCII text",
+            "programming_language": null,
+            "is_binary": false,
+            "is_text": true,
+            "is_archive": false,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "files_count": 0,
+            "dirs_count": 0,
+            "size_count": 0,
+            "scan_errors": []
+        },
+        {
+            "path": "samples/screenshot.png",
+            "type": "file",
+            "name": "screenshot.png",
+            "base_name": "screenshot",
+            "extension": ".png",
+            "size": 622754,
+            "date": "2019-09-10",
+            "sha1": "01ff4b1de0bc6c75c9cca6e46c80c1802d6976d4",
+            "md5": "b6ef5a90777147423c98b42a6a25e57a",
+            "mime_type": "image/png",
+            "file_type": "PNG image data, 2880 x 1666, 8-bit/color RGB, non-interlaced",
+            "programming_language": null,
+            "is_binary": true,
+            "is_text": false,
+            "is_archive": false,
+            "is_media": true,
+            "is_source": false,
+            "is_script": false,
+            "files_count": 0,
+            "dirs_count": 0,
+            "size_count": 0,
+            "scan_errors": []
+        }
+    ]
 }

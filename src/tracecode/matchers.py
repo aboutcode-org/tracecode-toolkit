@@ -1,6 +1,6 @@
 #
 # Copyright (c) nexB Inc. and others. All rights reserved.
-# http://nexb.com and https://github.com/nexB/tracecode-toolkit/
+# http://nexb.com and https://github.com/aboutcode-org/tracecode-toolkit/
 # The TraceCode software is licensed under the Apache License version 2.0.
 # Data generated with TraceCode require an acknowledgment.
 # TraceCode is a trademark of nexB Inc.
@@ -20,7 +20,7 @@
 #  TraceCode should be considered or used as legal advice. Consult an Attorney
 #  for any legal advice.
 #  TraceCode is a free and open source software analysis tool from nexB Inc. and others.
-#  Visit https://github.com/nexB/tracecode-toolkit/ for support and download.
+#  Visit https://github.com/aboutcode-org/tracecode-toolkit/ for support and download.
 #
 
 
@@ -275,6 +275,6 @@ def match_paths(path1, paths2):
         tops = cp1[max(cp1)]
         # do not keep multiple matches of len 1: these are filename matches
         # and are too weak to be valid in most cases
-        if not(max(cp1) == 1 and len(tops) > 1):
+        if not (max(cp1) == 1 and len(tops) > 1):
             for top in tops:
                 yield top

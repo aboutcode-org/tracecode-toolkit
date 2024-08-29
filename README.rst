@@ -10,7 +10,7 @@ TraceCode
  +--------------+----------------------------------------------------------------------------------------------+
 
 
-TraceCode is a simple command line utility to trace software components, 
+TraceCode is a simple command line utility to trace software components,
 packages and files between Development/Source and Deployment/Distribution/Binaries
 codebases as they are built, compiled and transformed.
 
@@ -18,7 +18,7 @@ Support
 =======
 
 If you have a problem, a suggestion or found a bug, please enter a ticket at:
-https://github.com/nexB/tracecode-toolkit/issues
+https://github.com/aboutcode-org/tracecode-toolkit/issues
 
 For other questions, discussions, and chats, we have:
 
@@ -35,7 +35,7 @@ For other questions, discussions, and chats, we have:
 Source code
 ===========
 
-* https://github.com/nexB/tracecode-toolkit.git
+* https://github.com/aboutcode-org/tracecode-toolkit.git
 
 
 License
@@ -49,4 +49,4 @@ See the NOTICE file for more details.
 Documentation & FAQ
 ===================
 
-https://github.com/nexB/tracecode-toolkit/wiki
+https://github.com/aboutcode-org/tracecode-toolkit/wiki

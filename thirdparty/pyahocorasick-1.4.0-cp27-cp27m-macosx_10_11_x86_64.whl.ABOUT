@@ -1,7 +1,7 @@
 about_resource: pyahocorasick-1.4.0-cp27-cp27m-macosx_10_11_x86_64.whl
 name: pyahocorasick
 version: 1.4.0
-download_url: https://github.com/nexB/scancode-toolkit/raw/develop/thirdparty/pyahocorasick-1.4.0-cp27-cp27m-macosx_10_11_x86_64.whl
+download_url: https://github.com/aboutcode-org/scancode-toolkit/raw/develop/thirdparty/pyahocorasick-1.4.0-cp27-cp27m-macosx_10_11_x86_64.whl
 description: Python module (C extension and plain python) implementing Aho-Corasick algorithm
 homepage_url: https://github.com/WojciechMula/pyahocorasick
 license_expression: bsd-new AND public-domain

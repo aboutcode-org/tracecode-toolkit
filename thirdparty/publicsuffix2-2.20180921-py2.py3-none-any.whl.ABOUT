@@ -11,7 +11,7 @@ copyright: |
 description: A fork of publicsuffix with updated data as "package data" in a wheel
     friendly format
 download_url: https://files.pythonhosted.org/packages/9f/7e/6fffa68895e7d3a87ba782dcaffa5ef3e825287e33b56e13bb42e4ea2b63/publicsuffix2-2.20180921-py2.py3-none-any.whl
-homepage_url: https://github.com/nexB/python-publicsuffix2
+homepage_url: https://github.com/aboutcode-org/python-publicsuffix2
 license_expression: mit AND mpl-2.0
 licenses:
 -   file: mit.LICENSE
@@ -22,10 +22,10 @@ licenses:
     name: Mozilla Public License 2.0
 name: publicsuffix2
 notice_file: publicsuffix2-2.20180921-py2.py3-none-any.whl.NOTICE
-notice_url: https://github.com/nexB/python-publicsuffix2/blob/develop/publicsuffix.LICENSE
+notice_url: https://github.com/aboutcode-org/python-publicsuffix2/blob/develop/publicsuffix.LICENSE
 owner: nexB
 owner_url: http://www.nexb.com/
 redistribute: true
 track_changes: true
-vcs_url: git+https://github.com/nexB/python-publicsuffix2.git
+vcs_url: git+https://github.com/aboutcode-org/python-publicsuffix2.git
 version: '2.20180921'

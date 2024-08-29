@@ -1,79 +1,79 @@
 {
-  "tracecode_notice": "Generated with TraceCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nTraceCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nTraceCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/nexB/tracecode-toolkit/ for support and download.",
-  "tracecode_errors": [],
-  "tracecode_results": [
-    {
-      "path": "samples/src/arch/zlib.tar.gz",
-      "type": "file",
-      "date": "2019-09-10",
-      "sha1": "576f0ccfe534d7f5ff5d6400078d3c6586de3abd",
-      "md5": "20b2370751abfc08bb3556c1d8114b5a",
-      "mime_type": "application/x-gzip",
-      "file_type": "gzip compressed data, last modified: Wed Jul 15 11:08:19 2015, from Unix",
-      "programming_language": null,
-      "is_binary": true,
-      "is_text": false,
-      "is_archive": true,
-      "is_media": false,
-      "is_source": false,
-      "is_script": false,
-      "scan_errors": [],
-      "deployed_to": [
+    "tracecode_notice": "Generated with TraceCode and provided on an \"AS IS\" BASIS, WITHOUT WARRANTIES\nOR CONDITIONS OF ANY KIND, either express or implied. No content created from\nTraceCode should be considered or used as legal advice. Consult an Attorney\nfor any legal advice.\nTraceCode is a free software codebase-comparison tool from nexB Inc. and others.\nVisit https://github.com/aboutcode-org/tracecode-toolkit/ for support and download.",
+    "tracecode_errors": [],
+    "tracecode_results": [
         {
-          "path": "samples/arch/zlib.tar.gz",
-          "matcher": "checksum match",
-          "confidence": "perfect",
-          "checksum_matchtype": "sha1"
-        }
-      ]
-    },
-    {
-      "path": "samples",
-      "type": "directory",
-      "date": null,
-      "sha1": null,
-      "md5": null,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": null,
-      "is_text": null,
-      "is_archive": null,
-      "is_media": null,
-      "is_source": null,
-      "is_script": null,
-      "scan_errors": [],
-      "deployed_to": [
+            "path": "samples/src/arch/zlib.tar.gz",
+            "type": "file",
+            "date": "2019-09-10",
+            "sha1": "576f0ccfe534d7f5ff5d6400078d3c6586de3abd",
+            "md5": "20b2370751abfc08bb3556c1d8114b5a",
+            "mime_type": "application/x-gzip",
+            "file_type": "gzip compressed data, last modified: Wed Jul 15 11:08:19 2015, from Unix",
+            "programming_language": null,
+            "is_binary": true,
+            "is_text": false,
+            "is_archive": true,
+            "is_media": false,
+            "is_source": false,
+            "is_script": false,
+            "scan_errors": [],
+            "deployed_to": [
+                {
+                    "path": "samples/arch/zlib.tar.gz",
+                    "matcher": "checksum match",
+                    "confidence": "perfect",
+                    "checksum_matchtype": "sha1"
+                }
+            ]
+        },
         {
-          "path": "samples",
-          "matcher": "path match",
-          "confidence": "high"
-        }
-      ]
-    },
-    {
-      "path": "samples/src/arch",
-      "type": "directory",
-      "date": null,
-      "sha1": null,
-      "md5": null,
-      "mime_type": null,
-      "file_type": null,
-      "programming_language": null,
-      "is_binary": null,
-      "is_text": null,
-      "is_archive": null,
-      "is_media": null,
-      "is_source": null,
-      "is_script": null,
-      "scan_errors": [],
-      "deployed_to": [
+            "path": "samples",
+            "type": "directory",
+            "date": null,
+            "sha1": null,
+            "md5": null,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": null,
+            "is_text": null,
+            "is_archive": null,
+            "is_media": null,
+            "is_source": null,
+            "is_script": null,
+            "scan_errors": [],
+            "deployed_to": [
+                {
+                    "path": "samples",
+                    "matcher": "path match",
+                    "confidence": "high"
+                }
+            ]
+        },
         {
-          "path": "samples/arch",
-          "matcher": "path match",
-          "confidence": "high"
+            "path": "samples/src/arch",
+            "type": "directory",
+            "date": null,
+            "sha1": null,
+            "md5": null,
+            "mime_type": null,
+            "file_type": null,
+            "programming_language": null,
+            "is_binary": null,
+            "is_text": null,
+            "is_archive": null,
+            "is_media": null,
+            "is_source": null,
+            "is_script": null,
+            "scan_errors": [],
+            "deployed_to": [
+                {
+                    "path": "samples/arch",
+                    "matcher": "path match",
+                    "confidence": "high"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

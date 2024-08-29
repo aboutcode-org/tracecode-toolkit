@@ -1,6 +1,6 @@
 #
 # Copyright (c) nexB Inc. and others. All rights reserved.
-# http://nexb.com and https://github.com/nexB/tracecode-toolkit/
+# http://nexb.com and https://github.com/aboutcode-org/tracecode-toolkit/
 # The TraceCode software is licensed under the Apache License version 2.0.
 # Data generated with TraceCode require an acknowledgment.
 # TraceCode is a trademark of nexB Inc.
@@ -20,7 +20,7 @@
 #  TraceCode should be considered or used as legal advice. Consult an Attorney
 #  for any legal advice.
 #  TraceCode is a free and open source software analysis tool from nexB Inc. and others.
-#  Visit https://github.com/nexB/tracecode-toolkit/ for support and download.
+#  Visit https://github.com/aboutcode-org/tracecode-toolkit/ for support and download.
 #
 
 from __future__ import absolute_import
@@ -40,12 +40,12 @@ class TestUtils(FileBasedTesting):
     test_data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
     def test_get_notice(self):
-        expected  = """Generated with TraceCode and provided on an "AS IS" BASIS, WITHOUT WARRANTIES
+        expected = """Generated with TraceCode and provided on an "AS IS" BASIS, WITHOUT WARRANTIES
 OR CONDITIONS OF ANY KIND, either express or implied. No content created from
 TraceCode should be considered or used as legal advice. Consult an Attorney
 for any legal advice.
 TraceCode is a free software codebase-comparison tool from nexB Inc. and others.
-Visit https://github.com/nexB/tracecode-toolkit/ for support and download."""
+Visit https://github.com/aboutcode-org/tracecode-toolkit/ for support and download."""
         result = utils.get_notice()
         print(result)
         assert expected == result
